@@ -9,7 +9,8 @@ import pl.shoeshop.shoeshop.entity.Shoe;
 
 import java.util.List;
 
-@RestController(value = "api/")
+@RestController
+@RequestMapping("api/")
 public class ShoeResource {
 
     @RequestMapping(value = "shoes", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)

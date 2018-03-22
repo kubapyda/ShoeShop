@@ -42,6 +42,7 @@ public class Shoe {
     private GenderType gender;
 
     @Column
+    @Enumerated(EnumType.STRING)
     private ShoeType shoeType;
 
     @Column

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="201803221240-1" author="niemiecw">
+        <createTable tableName="receiver">
+            <column name="id" autoIncrement="true" type="bigint">
+                <constraints primaryKey="true"
+                             primaryKeyName="receiver_pk"/>
+            </column>
+            <column name="name" type="varchar(31)"/>
+            <column name="surname" type="varchar(31)"/>
+            <column name="postal_code" type="varchar(31)"/>
+            <column name="city" type="varchar(31)"/>
+            <column name="street" type="varchar(31)"/>
+            <column name="flat_number" type="int"/>
+            <column name="locale_number" type="int"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

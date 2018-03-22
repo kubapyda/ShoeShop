@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="201803212355-1" author="niemiecw">
+        <createTable tableName="shoe_variant">
+            <column name="id" autoIncrement="true" type="bigint">
+                <constraints primaryKey="true"
+                             primaryKeyName="shoe_variant_pk"/>
+            </column>
+            <column name="shank_color" type="varchar(31)"/>
+            <column name="sole_color" type="varchar(31)"/>
+            <column name="size" type="int"/>
+            <column name="quantity" type="int"/>
+            <column name="shoe_id" type="bigint">
+                <constraints referencedTableName="shoe"
+                             referencedColumnNames="id"
+                             foreignKeyName="shoe_variant_shoe"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

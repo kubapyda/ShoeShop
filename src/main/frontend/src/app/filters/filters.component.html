@@ -1,0 +1,47 @@
+<div class="panel panel-default">
+  <div class="panel-heading">Filtry</div>
+  <div class="panel-body">
+    <label>Cena</label>
+    <div class="form-group">
+      <input type="text" class="form-control form-size" placeholder="Od">
+      <input type="text" class="form-control form-size" placeholder="Do">
+    </div>
+    <label>Rozmiar obuwia</label>
+    <div class="shoe-size-container">
+      <div class="row">
+        <button class="btn btn-default">37</button>
+        <button class="btn btn-default">38</button>
+        <button class="btn btn-default">39</button>
+        <button class="btn btn-default">40</button>
+      </div>
+      <div class="row">
+        <button class="btn btn-default">41</button>
+        <button class="btn btn-default">42</button>
+        <button class="btn btn-default">43</button>
+        <button class="btn btn-default">44</button>
+      </div>
+      <div class="row">
+        <button class="btn btn-default">45</button>
+        <button class="btn btn-default">46</button>
+        <button class="btn btn-default">47</button>
+        <button class="btn btn-default">48</button>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Marka</label>
+      <!-- <input type="text" class="form-control"> -->
+      <ng-selectize [config]="selectizeConfig" [options]="markOptions" [(ngModel)]="mark"></ng-selectize>
+    </div>
+    <div class="form-group">
+      <label>Nazwa</label>
+      <input type="text" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Kolor</label>
+      <input type="text" class="form-control">
+    </div>
+    <div class="text-right">
+      <button class="btn btn-warning">Filtruj</button>
+    </div>
+  </div>
+</div>

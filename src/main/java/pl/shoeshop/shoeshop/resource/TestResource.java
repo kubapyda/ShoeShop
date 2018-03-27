@@ -9,16 +9,16 @@ import pl.shoeshop.shoeshop.repository.*;
 
 import java.util.List;
 
-@RestController()
+@RestController
 @RequestMapping("test/")
 public class TestResource {
+
     @Autowired
     private ShoeVariantRepository orderRepository;
 
-    @GetMapping("all")
+    @GetMapping("orders")
     public List<ShoeVariant> read() {
         return orderRepository.findAll();
     }
-
 
 }

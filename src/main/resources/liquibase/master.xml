@@ -12,4 +12,6 @@
     <include file="classpath:liquibase/201803221310_added_entity_ordered_shoe.xml" relativeToChangelogFile="false"/>
     <include file="classpath:liquibase/201803221750_edited_entity_ordered_shoe.xml" relativeToChangelogFile="false"/>
     <include file="classpath:liquibase/201803221810_edited_entity_shoe.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:liquibase/201803272010_edited_entity_shoe_variant.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:liquibase/201803272030_added_entity_sized_shoe.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>

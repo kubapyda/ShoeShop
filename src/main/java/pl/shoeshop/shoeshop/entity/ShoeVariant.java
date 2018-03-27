@@ -25,12 +25,9 @@ public class ShoeVariant {
     @Enumerated(EnumType.STRING)
     private ColorType soleColor;
 
-    @Column
-    private Integer size;
-
-    @Column
-    private Integer quantity;
-
     @ManyToOne
     private Shoe shoe;
+
+    @OneToMany
+    private List<SizedShoe> sizedShoe;
 }

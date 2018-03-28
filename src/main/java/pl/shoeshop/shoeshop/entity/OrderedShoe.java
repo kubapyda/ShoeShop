@@ -20,7 +20,7 @@ public class OrderedShoe {
     private Order order;
 
     @OneToOne
-    private ShoeVariant shoeVariant;
+    private SizedShoe sizedShoe;
 
     @Column
     private Integer quantity;

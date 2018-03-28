@@ -8,4 +8,14 @@
     <changeSet id="201803221750-1" author="jereczekt">
         <renameTable oldTableName="order" newTableName="t_order"/>
     </changeSet>
+
+    <changeSet id="201803221750-2" author="niemiecw">
+        <dropForeignKeyConstraint baseTableName="ordered_shoe" constraintName="ordered_shoe_variant"/>
+        <dropColumn tableName="ordered_shoe" columnName="shoe_variant_id"/>
+        <addColumn tableName="ordered_shoe">
+            <column name="sized_shoe_id" type="bigint">
+                <constraints referencedTableName="sized_shoe" foreignKeyName="ordered_shoe_sized_variant"/>
+            </column>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

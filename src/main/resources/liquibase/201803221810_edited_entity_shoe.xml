@@ -8,4 +8,8 @@
     <changeSet id="201803221810-1" author="jereczekt">
         <renameColumn tableName="shoe" oldColumnName="shoeType" newColumnName="shoe_type" columnDataType="varchar(31)"/>
     </changeSet>
+
+    <changeSet id="201803221810-2" author="niemiecw">
+        <renameColumn tableName="shoe" oldColumnName="brand_type" newColumnName="brand" columnDataType="varchar(31)"/>
+    </changeSet>
 </databaseChangeLog>

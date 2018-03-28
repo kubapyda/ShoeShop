@@ -11,4 +11,11 @@
         <dropColumn columnName="quantity"
                     tableName="shoe_variant"/>
     </changeSet>
+    <changeSet id="201803282300" author="jereczekt">
+        <addColumn tableName="shoe_variant">
+            <column name="image" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

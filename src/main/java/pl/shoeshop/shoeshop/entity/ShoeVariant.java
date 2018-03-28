@@ -20,6 +20,9 @@ public class ShoeVariant {
     private Long id;
 
     @Column
+    private String image;
+
+    @Column
     @Enumerated(EnumType.STRING)
     private ColorType shankColor;
 

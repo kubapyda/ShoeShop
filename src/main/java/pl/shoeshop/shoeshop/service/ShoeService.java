@@ -19,7 +19,7 @@ public interface ShoeService {
 
     void editShoe(Shoe shoe);
 
-    Resource getImage(String fileName);
+    Resource getImage(Long variantId);
 
     void setImage(Long variantId, MultipartFile file) throws IOException;
 }

@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import pl.shoeshop.shoeshop.dto.ShoeSearchDTO;
@@ -32,12 +31,12 @@ public class ShoeServiceImpl implements ShoeService {
     }
 
     @Override
-    public List<Shoe> getShoes(String phrase, Pageable pageable, Sort sort) {
+    public List<Shoe> getShoes(String phrase, Pageable pageable) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public List<Shoe> getShoes(ShoeSearchDTO dto, Pageable pageable, Sort sort) {
+    public List<Shoe> getShoes(ShoeSearchDTO dto, Pageable pageable) {
         throw new UnsupportedOperationException();
     }
 

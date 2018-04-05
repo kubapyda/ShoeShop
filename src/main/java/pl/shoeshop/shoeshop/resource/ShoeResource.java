@@ -3,7 +3,6 @@ package pl.shoeshop.shoeshop.resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,12 +22,12 @@ public class ShoeResource {
     ShoeService shoeService;
 
     @RequestMapping(value = "find/{phrase}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<List<Shoe>> getShoes(@PathVariable String phrase, Pageable pageable, Sort sort) {
+    public ResponseEntity<List<Shoe>> getShoes(@PathVariable String phrase, Pageable pageable) {
         return null;
     }
 
     @RequestMapping(value = "find", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<List<Shoe>> getShoes(@RequestBody ShoeSearchDTO dto, Pageable pageable, Sort sort) {
+    public ResponseEntity<List<Shoe>> getShoes(@RequestBody ShoeSearchDTO dto, Pageable pageable) {
         return null;
     }
 

@@ -1,7 +1,6 @@
 package pl.shoeshop.shoeshop.resource;
 
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +16,7 @@ import java.util.List;
 public class OrderResource {
 
     @RequestMapping(value = "find/{status}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<List<Order>> getOrders(@PathVariable OrderStatusType status, Pageable pageable, Sort sort) {
+    public ResponseEntity<List<Order>> getOrders(@PathVariable OrderStatusType status, Pageable pageable) {
         return null;
     }
 

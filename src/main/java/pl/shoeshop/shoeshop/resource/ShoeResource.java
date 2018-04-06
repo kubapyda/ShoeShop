@@ -32,13 +32,21 @@ public class ShoeResource {
     }
 
     @RequestMapping(value = "add", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<?> addShoe(Shoe shoe) {
-        return null;
+    public ResponseEntity<Shoe> addShoe(Shoe shoe) {
+        shoeService.addShoe(shoe);
+        return ResponseEntity.ok(shoe);
     }
 
     @RequestMapping(value = "edit", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<?> editShoe(Shoe shoe) {
-        return null;
+    public ResponseEntity<Shoe> editShoe(Shoe shoe) {
+        shoeService.editShoe(shoe);
+        return ResponseEntity.ok(shoe);
+    }
+
+    @RequestMapping(value = "delete", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<?> deleteShoe(Shoe shoe) {
+        shoeService.deleteShoe(shoe);
+        return ResponseEntity.ok().build();
     }
 
     @RequestMapping(value = "{variantId}/picture", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)

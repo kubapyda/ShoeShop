@@ -18,6 +18,8 @@ public interface ShoeService {
 
     void editShoe(Shoe shoe);
 
+    void deleteShoe(Shoe shoe);
+
     Resource getImage(Long variantId);
 
     void setImage(Long variantId, MultipartFile file) throws IOException;

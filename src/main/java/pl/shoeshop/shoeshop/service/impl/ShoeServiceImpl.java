@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import pl.shoeshop.shoeshop.dto.ShoeSearchDTO;
 import pl.shoeshop.shoeshop.entity.Shoe;
+import pl.shoeshop.shoeshop.repository.ShoeRepository;
 import pl.shoeshop.shoeshop.repository.ShoeVariantRepository;
 import pl.shoeshop.shoeshop.service.ShoeService;
 
@@ -23,9 +24,11 @@ public class ShoeServiceImpl implements ShoeService {
 
     private ShoeVariantRepository shoeVariantRepository;
     private ResourceLoader resourceLoader;
+    private ShoeRepository shoeRepository;
 
     @Autowired
-    public ShoeServiceImpl(ShoeVariantRepository shoeVariantRepository, ResourceLoader resourceLoader) {
+    public ShoeServiceImpl(ShoeRepository shoeRepository, ShoeVariantRepository shoeVariantRepository, ResourceLoader resourceLoader) {
+        this.shoeRepository = shoeRepository;
         this.shoeVariantRepository = shoeVariantRepository;
         this.resourceLoader = resourceLoader;
     }
@@ -42,12 +45,17 @@ public class ShoeServiceImpl implements ShoeService {
 
     @Override
     public void addShoe(Shoe shoe) {
-        throw new UnsupportedOperationException();
+        shoeRepository.save(shoe);
     }
 
     @Override
     public void editShoe(Shoe shoe) {
-        throw new UnsupportedOperationException();
+        shoeRepository.saveAndFlush(shoe);
+    }
+
+    @Override
+    public void deleteShoe(Shoe shoe) {
+        shoeRepository.delete(shoe);
     }
 
     @Override

@@ -13,8 +13,9 @@ import java.util.List;
 public class ShoeSearchDTO {
 
     private List<BrandType> brands;
-    private List<ColorType> colors;
     private List<ShoeType> shoeTypes;
+    private List<ColorType> soleColors;
+    private List<ColorType> shankColors;
 
     @Digits(integer = 4, fraction = 2)
     private BigDecimal priceFrom;

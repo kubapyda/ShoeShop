@@ -1,6 +1,9 @@
 package pl.shoeshop.shoeshop.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import pl.shoeshop.shoeshop.type.ColorType;
 
 import javax.persistence.*;
@@ -28,8 +31,10 @@ public class ShoeVariant {
     private ColorType soleColor;
 
     @ManyToOne
+    @JsonIgnore
     private Shoe shoe;
 
-    @OneToMany
-    private List<SizedShoe> sizedShoe;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "shoeVariant")
+    @Fetch(FetchMode.SUBSELECT)
+    private List<SizedShoe> sizedShoes;
 }

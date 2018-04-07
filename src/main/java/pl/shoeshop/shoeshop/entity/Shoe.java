@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import pl.shoeshop.shoeshop.type.BrandType;
 import pl.shoeshop.shoeshop.type.GenderType;
 import pl.shoeshop.shoeshop.type.ShoeType;
@@ -29,7 +31,7 @@ public class Shoe {
 
     @Column
     @Enumerated(EnumType.STRING)
-    private BrandType brandType;
+    private BrandType brand;
 
     @Column
     private String model;
@@ -48,7 +50,8 @@ public class Shoe {
     @Column
     private String description;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "shoe")
+    @Fetch(FetchMode.SUBSELECT)
     private List<ShoeVariant> variants;
 
 }

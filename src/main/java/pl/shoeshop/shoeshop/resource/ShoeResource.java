@@ -18,39 +18,45 @@ import java.util.List;
 @RequestMapping("shoes/")
 public class ShoeResource {
 
+    private ShoeService shoeService;
+
     @Autowired
-    ShoeService shoeService;
+    public ShoeResource(ShoeService shoeService) {
+        this.shoeService = shoeService;
+    }
 
     @RequestMapping(value = "find/{phrase}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<List<Shoe>> getShoes(@PathVariable String phrase, Pageable pageable) {
-        return null;
+        List<Shoe> shoes = shoeService.getShoes(phrase, pageable);
+        return ResponseEntity.ok(shoes);
     }
 
     @RequestMapping(value = "find", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<List<Shoe>> getShoes(@RequestBody ShoeSearchDTO dto, Pageable pageable) {
-        return null;
+        List<Shoe> shoes = shoeService.getShoes(dto, pageable);
+        return ResponseEntity.ok(shoes);
     }
 
     @RequestMapping(value = "add", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<Shoe> addShoe(Shoe shoe) {
+    public ResponseEntity<Shoe> addShoe(@RequestBody Shoe shoe) {
         shoeService.addShoe(shoe);
         return ResponseEntity.ok(shoe);
     }
 
-    @RequestMapping(value = "edit", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<Shoe> editShoe(Shoe shoe) {
+    @RequestMapping(value = "edit", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<Shoe> editShoe(@RequestBody Shoe shoe) {
         shoeService.editShoe(shoe);
         return ResponseEntity.ok(shoe);
     }
 
-    @RequestMapping(value = "delete", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<?> deleteShoe(Shoe shoe) {
-        shoeService.deleteShoe(shoe);
+    @RequestMapping(value = "delete/{shoeId}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<?> deleteShoe(@PathVariable Long shoeId) {
+        shoeService.deleteShoe(shoeId);
         return ResponseEntity.ok().build();
     }
 
     @RequestMapping(value = "{variantId}/picture", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<Resource> getPicture(@PathVariable Long variantId) throws IOException {
+    public ResponseEntity<Resource> getPicture(@PathVariable Long variantId) {
         Resource image = shoeService.getImage(variantId);
         return ResponseEntity.ok(image);
     }

@@ -18,7 +18,7 @@ public interface ShoeService {
 
     void editShoe(Shoe shoe);
 
-    void deleteShoe(Shoe shoe);
+    void deleteShoe(Long shoeId);
 
     Resource getImage(Long variantId);
 

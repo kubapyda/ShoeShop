@@ -8,8 +8,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import pl.shoeshop.shoeshop.dto.ShoeSearchDTO;
 import pl.shoeshop.shoeshop.entity.Shoe;
+import pl.shoeshop.shoeshop.entity.ShoeVariant;
+import pl.shoeshop.shoeshop.entity.SizedShoe;
 import pl.shoeshop.shoeshop.repository.ShoeRepository;
 import pl.shoeshop.shoeshop.repository.ShoeVariantRepository;
+import pl.shoeshop.shoeshop.service.ShoeSearchService;
 import pl.shoeshop.shoeshop.service.ShoeService;
 
 import java.io.File;
@@ -22,12 +25,17 @@ public class ShoeServiceImpl implements ShoeService {
 
     private static final String UPLOAD_ROOT = "/upload/shoeImg";
 
+    private ShoeSearchService shoeSearchService;
+    private ShoeRepository shoeRepository;
     private ShoeVariantRepository shoeVariantRepository;
     private ResourceLoader resourceLoader;
-    private ShoeRepository shoeRepository;
 
     @Autowired
-    public ShoeServiceImpl(ShoeRepository shoeRepository, ShoeVariantRepository shoeVariantRepository, ResourceLoader resourceLoader) {
+    public ShoeServiceImpl(ShoeSearchService shoeSearchService,
+                           ShoeRepository shoeRepository,
+                           ShoeVariantRepository shoeVariantRepository,
+                           ResourceLoader resourceLoader) {
+        this.shoeSearchService = shoeSearchService;
         this.shoeRepository = shoeRepository;
         this.shoeVariantRepository = shoeVariantRepository;
         this.resourceLoader = resourceLoader;
@@ -35,27 +43,34 @@ public class ShoeServiceImpl implements ShoeService {
 
     @Override
     public List<Shoe> getShoes(String phrase, Pageable pageable) {
-        throw new UnsupportedOperationException();
+        return shoeSearchService.getShoes(phrase, pageable);
     }
 
     @Override
     public List<Shoe> getShoes(ShoeSearchDTO dto, Pageable pageable) {
-        throw new UnsupportedOperationException();
+        return shoeSearchService.getShoes(dto, pageable);
     }
 
     @Override
     public void addShoe(Shoe shoe) {
-        shoeRepository.save(shoe);
+        if (shoe != null && shoe.getId() == null) {
+            addRelations(shoe);
+            shoeRepository.saveAndFlush(shoe);
+        }
     }
 
     @Override
     public void editShoe(Shoe shoe) {
-        shoeRepository.saveAndFlush(shoe);
+        if (shoe != null && shoe.getId() != null) {
+            addRelations(shoe);
+            shoeRepository.saveAndFlush(shoe);
+        }
     }
 
     @Override
-    public void deleteShoe(Shoe shoe) {
-        shoeRepository.delete(shoe);
+    public void deleteShoe(Long shoeId) {
+        Shoe one = shoeRepository.getOne(shoeId);
+        shoeRepository.delete(one);
     }
 
     @Override
@@ -73,6 +88,19 @@ public class ShoeServiceImpl implements ShoeService {
                 fileDir.delete();
             }
             Files.copy(file.getInputStream(), fileDir.toPath());
+        }
+    }
+
+    private void addRelations(Shoe shoe) {
+        if (shoe != null && shoe.getVariants() != null) {
+            for (ShoeVariant shoeVariant : shoe.getVariants()) {
+                shoeVariant.setShoe(shoe);
+                if (shoeVariant.getSizedShoes() != null) {
+                    for (SizedShoe sizedShoe : shoeVariant.getSizedShoes()) {
+                        sizedShoe.setShoeVariant(shoeVariant);
+                    }
+                }
+            }
         }
     }
 }

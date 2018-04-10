@@ -13,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
+import pl.shoeshop.shoeshop.dto.ShoeDTO;
 import pl.shoeshop.shoeshop.dto.ShoeSearchDTO;
 import pl.shoeshop.shoeshop.entity.Shoe;
 import pl.shoeshop.shoeshop.entity.ShoeVariant;
@@ -38,9 +39,17 @@ public class ShoeServiceTest {
 
     @Test
     public void getShoesByPhrase() {
-        Shoe shoe1 = Shoe.builder().brand(BrandType.ADIDAS).model("superstar").build();
-        Shoe shoe2 = Shoe.builder().brand(BrandType.NEW_BALANCE).model("some model").build();
-        Shoe shoe3 = Shoe.builder().brand(BrandType.NIKE).model("air max").build();
+        Shoe shoe1 = Shoe.builder().brand(BrandType.ADIDAS).model("superstar")
+                .variants(Lists.newArrayList(new ShoeVariant()))
+                .build();
+
+        Shoe shoe2 = Shoe.builder().brand(BrandType.NEW_BALANCE).model("some model")
+                .variants(Lists.newArrayList(new ShoeVariant()))
+                .build();
+
+        Shoe shoe3 = Shoe.builder().brand(BrandType.NIKE).model("air max")
+                .variants(Lists.newArrayList(new ShoeVariant()))
+                .build();
 
         shoeService.addShoe(shoe1);
         shoeService.addShoe(shoe2);
@@ -50,7 +59,7 @@ public class ShoeServiceTest {
 
         String phrase = "air";
 
-        List<Shoe> shoes = shoeService.getShoes(phrase, pageable);
+        List<ShoeDTO> shoes = shoeService.getShoes(phrase, pageable);
         Assert.assertEquals(shoe3.getModel(), shoes.get(0).getModel());
         Assert.assertEquals(1, shoes.size());
 
@@ -87,7 +96,7 @@ public class ShoeServiceTest {
         ShoeSearchDTO dto = new ShoeSearchDTO();
         dto.setBrands(Lists.newArrayList(BrandType.NEW_BALANCE, BrandType.NIKE));
 
-        List<Shoe> shoes = shoeService.getShoes(dto, Pageable.unpaged());
+        List<ShoeDTO> shoes = shoeService.getShoes(dto, Pageable.unpaged());
 
         Assert.assertEquals(2, shoes.size());
         Assert.assertFalse(shoes.stream().anyMatch(s -> BrandType.ADIDAS.equals(s.getBrand())));

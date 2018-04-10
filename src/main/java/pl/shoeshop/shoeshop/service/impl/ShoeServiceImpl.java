@@ -6,6 +6,7 @@ import org.springframework.core.io.ResourceLoader;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import pl.shoeshop.shoeshop.dto.ShoeDTO;
 import pl.shoeshop.shoeshop.dto.ShoeSearchDTO;
 import pl.shoeshop.shoeshop.entity.Shoe;
 import pl.shoeshop.shoeshop.entity.ShoeVariant;
@@ -42,12 +43,12 @@ public class ShoeServiceImpl implements ShoeService {
     }
 
     @Override
-    public List<Shoe> getShoes(String phrase, Pageable pageable) {
+    public List<ShoeDTO> getShoes(String phrase, Pageable pageable) {
         return shoeSearchService.getShoes(phrase, pageable);
     }
 
     @Override
-    public List<Shoe> getShoes(ShoeSearchDTO dto, Pageable pageable) {
+    public List<ShoeDTO> getShoes(ShoeSearchDTO dto, Pageable pageable) {
         return shoeSearchService.getShoes(dto, pageable);
     }
 

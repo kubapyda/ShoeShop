@@ -7,6 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import pl.shoeshop.shoeshop.dto.ShoeDTO;
 import pl.shoeshop.shoeshop.dto.ShoeSearchDTO;
 import pl.shoeshop.shoeshop.entity.Shoe;
 import pl.shoeshop.shoeshop.service.ShoeService;
@@ -26,14 +27,14 @@ public class ShoeResource {
     }
 
     @RequestMapping(value = "find/{phrase}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<List<Shoe>> getShoes(@PathVariable String phrase, Pageable pageable) {
-        List<Shoe> shoes = shoeService.getShoes(phrase, pageable);
+    public ResponseEntity<List<ShoeDTO>> getShoes(@PathVariable String phrase, Pageable pageable) {
+        List<ShoeDTO> shoes = shoeService.getShoes(phrase, pageable);
         return ResponseEntity.ok(shoes);
     }
 
     @RequestMapping(value = "find", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<List<Shoe>> getShoes(@RequestBody ShoeSearchDTO dto, Pageable pageable) {
-        List<Shoe> shoes = shoeService.getShoes(dto, pageable);
+    public ResponseEntity<List<ShoeDTO>> getShoes(@RequestBody ShoeSearchDTO dto, Pageable pageable) {
+        List<ShoeDTO> shoes = shoeService.getShoes(dto, pageable);
         return ResponseEntity.ok(shoes);
     }
 
@@ -49,7 +50,7 @@ public class ShoeResource {
         return ResponseEntity.ok(shoe);
     }
 
-    @RequestMapping(value = "delete/{shoeId}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping(value = "delete/{shoeId}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<?> deleteShoe(@PathVariable Long shoeId) {
         shoeService.deleteShoe(shoeId);
         return ResponseEntity.ok().build();

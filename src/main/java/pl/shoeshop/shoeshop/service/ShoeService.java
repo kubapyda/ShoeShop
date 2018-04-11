@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.util.List;
 
 public interface ShoeService {
+    List<ShoeDTO> getShoes(Pageable pageable);
+
     List<ShoeDTO> getShoes(String phrase, Pageable pageable);
 
     List<ShoeDTO> getShoes(ShoeSearchDTO dto, Pageable pageable);

@@ -43,6 +43,11 @@ public class ShoeServiceImpl implements ShoeService {
     }
 
     @Override
+    public List<ShoeDTO> getShoes(Pageable pageable) {
+        return shoeSearchService.getShoes(pageable);
+    }
+
+    @Override
     public List<ShoeDTO> getShoes(String phrase, Pageable pageable) {
         return shoeSearchService.getShoes(phrase, pageable);
     }

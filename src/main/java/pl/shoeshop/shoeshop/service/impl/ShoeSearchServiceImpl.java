@@ -40,6 +40,11 @@ public class ShoeSearchServiceImpl implements ShoeSearchService {
     }
 
     @Override
+    public List<ShoeDTO> getShoes(Pageable pageable) {
+        return mapToDTO(shoeVariantRepository.findAll());
+    }
+
+    @Override
     public List<ShoeDTO> getShoes(String phrase, Pageable pageable) {
         QShoe shoe = QShoeVariant.shoeVariant.shoe;
 
@@ -55,11 +60,9 @@ public class ShoeSearchServiceImpl implements ShoeSearchService {
                     .or(shoe.shoeType.stringValue().startsWith(matcher));
         }
 
-        return shoeVariantRepository.findAll(expression, pageable)
-                .getContent()
-                .stream()
-                .map(shoeMapper::toDTO)
-                .collect(Collectors.toList());
+        List<ShoeVariant> shoeVariants = shoeVariantRepository.findAll(expression, pageable).getContent();
+
+        return mapToDTO(shoeVariants);
     }
 
     @Override
@@ -86,6 +89,10 @@ public class ShoeSearchServiceImpl implements ShoeSearchService {
 
         List<ShoeVariant> shoeVariants = shoeVariantRepository.findAll(expression, pageable).getContent();
 
+        return mapToDTO(shoeVariants);
+    }
+
+    private List<ShoeDTO> mapToDTO(List<ShoeVariant> shoeVariants) {
         return shoeVariants.stream()
                 .map(shoeMapper::toDTO)
                 .distinct()

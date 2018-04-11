@@ -1,5 +1,6 @@
 package pl.shoeshop.shoeshop.resource;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Pageable;
@@ -24,6 +25,12 @@ public class ShoeResource {
     @Autowired
     public ShoeResource(ShoeService shoeService) {
         this.shoeService = shoeService;
+    }
+
+    @RequestMapping(value = "find", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<List<ShoeDTO>> getShoes(Pageable pageable) {
+        List<ShoeDTO> shoes = shoeService.getShoes(StringUtils.EMPTY, pageable);
+        return ResponseEntity.ok(shoes);
     }
 
     @RequestMapping(value = "find/{phrase}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)

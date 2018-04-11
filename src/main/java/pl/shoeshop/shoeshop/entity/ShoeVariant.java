@@ -30,7 +30,8 @@ public class ShoeVariant {
     @Enumerated(EnumType.STRING)
     private ColorType soleColor;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
+    @Fetch(FetchMode.JOIN)
     @JsonIgnore
     private Shoe shoe;
 

@@ -8,11 +8,15 @@ export class ShoesService {
   private url: string;
 
   constructor(private http: HttpClient, private global: Global) {
-    this.url = `${global.apiAddress}/shoes/add`;
+    this.url = `${global.apiAddress}/shoes`;
+  }
+
+  findShoes() {
+    return this.http.get(`${this.url}/find`);
   }
 
   addShoes(shoes: Shoes) {
-    return this.http.post(this.url, shoes);
+    return this.http.post(`${this.url}/add`, shoes);
   }
 
 }

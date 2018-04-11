@@ -19,15 +19,10 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "../node_modules/bootstrap/dist/css/bootstrap.min.css",
-        "styles.css",
-        "../node_modules/selectize/dist/css/selectize.css",
-        "../node_modules/selectize/dist/css/selectize.{your chosen theme}.css"
+        "../node_modules/bootstrap/dist/css/bootstrap.css",
+        "styles.scss"
       ],
-      "scripts": [
-        "../node_modules/jquery/dist/jquery.min.js",
-        "../node_modules/ng-selectize/selectize/selectize.standalone.js"
-      ],
+      "scripts": [],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
@@ -60,7 +55,7 @@
     }
   },
   "defaults": {
-    "styleExt": "css",
+    "styleExt": "scss",
     "component": {}
   }
 }

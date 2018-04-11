@@ -1,11 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-shoe',
-  templateUrl: './shoe.component.html',
-  styleUrls: ['./shoe.component.css']
+  selector: 'app-shoes',
+  templateUrl: './shoes.component.html',
+  styleUrls: ['./shoes.component.scss']
 })
-export class ShoeComponent implements OnInit {
+export class ShoesComponent implements OnInit {
   @Input() data: { mark: string, name: string, imagePath: string, price: number };
 
   constructor() { }

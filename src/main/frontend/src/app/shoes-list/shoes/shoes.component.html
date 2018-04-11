@@ -1,0 +1,14 @@
+<mat-card class="shoes-card m-2">
+  <img mat-card-image class="shoes-image" src="{{ data.imagePath }}" alt="{{ data.name }}">
+  <mat-card-header>
+    <mat-card-title>
+      <h2>{{ data.mark }}</h2>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <h4>
+      {{ data.name }}
+      <span class="badge badge-primary badge-price">{{ data.price }} zł</span>
+    </h4>
+  </mat-card-content>
+</mat-card>

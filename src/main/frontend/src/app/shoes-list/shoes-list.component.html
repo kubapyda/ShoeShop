@@ -1,8 +1,13 @@
-<div class="panel panel-info">
-  <div class="panel-heading">
-    Buty męskie
+<div class="row mt-3">
+  <div class="col-3">
+    <app-filters></app-filters>
   </div>
-  <div class="panel-body">
-    <app-shoe *ngFor="let shoe of shoes" [data]="shoe"></app-shoe>
+  <div class="col-9">
+    <mat-card>
+      <mat-card-title>Buty męskie</mat-card-title>
+      <mat-card-content>
+        <app-shoes *ngFor="let shoe of shoes" [data]="shoe"></app-shoes>
+      </mat-card-content>
+    </mat-card>
   </div>
 </div>

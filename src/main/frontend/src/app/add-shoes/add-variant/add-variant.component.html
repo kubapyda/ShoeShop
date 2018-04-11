@@ -1,0 +1,67 @@
+<div>
+  <h3>Dodaj wariant</h3>
+  <form #addVariantForm="ngForm" (ngSubmit)="saveVariant()" novalidate>
+    <div class="row mt-3">
+      <div class="col-12">
+        <label>Zdjęcie obuwia</label>
+        <mat-form-field class="input-width">
+          <input matInput>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <label>Kolor obuwia</label>
+        <mat-form-field class="input-width">
+          <mat-select required [(ngModel)]="variants.shankColor" name="shankColor" #shankColor="ngModel">
+            <mat-option *ngFor="let color of colors" [value]="color.value">
+              {{ color.viewValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <label>Kolor podeszwy</label>
+        <mat-form-field class="input-width">
+          <mat-select required [(ngModel)]="variants.soleColor" name="soleColor" #soleColor="ngModel">
+            <mat-option *ngFor="let color of colors" [value]="color.value">
+              {{ color.viewValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <mat-card>
+      <mat-card-content>
+        <div class="row">
+          <div class="col-5">Rozmiar</div>
+          <div class="col-5">Ilość sztuk</div>
+          <div class="col-2"></div>
+        </div>
+        <div class="row" *ngFor="let variant of variants.sizedShoes; let i = index">
+          <div class="col-5">
+            <mat-form-field class="variant-input-width">
+              <input matInput [(ngModel)]="variant.size" name="{{ 'size' + i }}" required>
+            </mat-form-field>
+          </div>
+          <div class="col-5">
+            <mat-form-field class="variant-input-width">
+              <input matInput [(ngModel)]="variant.quantity" name="{{ 'quantity' + i }}" required>
+            </mat-form-field>
+          </div>
+          <div class="col-2">
+            <button *ngIf="i !== variants.sizedShoes.length - 1" mat-raised-button class="remove-variant-btn" (click)="removeVariant(i)">-</button>
+            <button *ngIf="i === variants.sizedShoes.length - 1" mat-raised-button class="add-variant-btn" (click)="addVariant()">+</button>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+    <div class="row mt-3 text-right">
+      <div class="col-12">
+        <button mat-raised-button color="primary" type="submit" [disabled]="!addVariantForm.valid">Zapisz</button>
+      </div>
+    </div>
+  </form>
+</div>

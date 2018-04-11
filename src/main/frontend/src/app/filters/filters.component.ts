@@ -3,15 +3,9 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-filters',
   templateUrl: './filters.component.html',
-  styleUrls: ['./filters.component.css']
+  styleUrls: ['./filters.component.scss']
 })
 export class FiltersComponent implements OnInit {
-
-  selectizeConfig: Object = {
-    maxItems: 1,
-    valueField: 'id',
-    labelField: 'value'
-  };
 
   markOptions = [
     {

@@ -1,0 +1,23 @@
+.row {
+  label {
+    width: 200px;
+  }
+  .input-width {
+    width: 340px;
+  }
+  .variant-input-width {
+    width: 100%;
+  }
+  button {
+    font-weight: bold;
+    &.add-variant-btn {
+      min-width: 60px;
+      background-color: cornflowerblue;
+    }
+    &.remove-variant-btn {
+      min-width: 60px;
+      color: white;
+      background-color: firebrick;
+    }
+  }
+}

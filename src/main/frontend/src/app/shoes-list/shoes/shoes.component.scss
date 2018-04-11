@@ -1,0 +1,13 @@
+.shoes-card {
+  width: 23.3%;
+  position: relative;
+  display: inline-block;
+  .shoes-image {
+    padding: 0 10px;
+  }
+  .badge-price {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+  }
+}

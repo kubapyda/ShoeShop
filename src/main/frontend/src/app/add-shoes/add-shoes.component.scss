@@ -1,0 +1,32 @@
+.row {
+  label{
+    padding-left: 25px;
+    width: 200px;
+  }
+  .input-width {
+    width: 65%;
+  }
+  ul {
+    list-style-type: none;
+    display: inline-block;
+    width: 56%;
+    li {
+      padding: 15px 15px 5px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+      span {
+        font-size: 100%;
+      }
+    }
+  }
+  &.mt-3 {
+    label, button {
+      vertical-align: top;
+    }
+  }
+  &.marg-left {
+    margin-left: 76%;
+    button {
+      background-color: chartreuse;
+    }
+  }
+}

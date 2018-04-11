@@ -5,6 +5,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.web.multipart.MultipartFile;
 import pl.shoeshop.shoeshop.dto.ShoeDTO;
 import pl.shoeshop.shoeshop.dto.ShoeSearchDTO;
+import pl.shoeshop.shoeshop.dto.SizedShoeDTO;
 import pl.shoeshop.shoeshop.entity.Shoe;
 
 import java.io.IOException;
@@ -26,4 +27,6 @@ public interface ShoeService {
     Resource getImage(Long variantId);
 
     void setImage(Long variantId, MultipartFile file) throws IOException;
+
+    List<SizedShoeDTO> getSizes(Long variantId);
 }

@@ -6,15 +6,12 @@ import org.springframework.core.io.ResourceLoader;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import pl.shoeshop.shoeshop.dto.ShoeAvailabilityStatus;
 import pl.shoeshop.shoeshop.dto.ShoeDTO;
 import pl.shoeshop.shoeshop.dto.ShoeSearchDTO;
-import pl.shoeshop.shoeshop.dto.SizedShoeDTO;
 import pl.shoeshop.shoeshop.entity.Shoe;
 import pl.shoeshop.shoeshop.entity.ShoeVariant;
 import pl.shoeshop.shoeshop.entity.SizedShoe;
 import pl.shoeshop.shoeshop.repository.ShoeRepository;
-import pl.shoeshop.shoeshop.repository.ShoeVariantRepository;
 import pl.shoeshop.shoeshop.service.ShoeSearchService;
 import pl.shoeshop.shoeshop.service.ShoeService;
 
@@ -23,7 +20,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class ShoeServiceImpl implements ShoeService {
@@ -32,17 +28,14 @@ public class ShoeServiceImpl implements ShoeService {
 
     private ShoeSearchService shoeSearchService;
     private ShoeRepository shoeRepository;
-    private ShoeVariantRepository shoeVariantRepository;
     private ResourceLoader resourceLoader;
 
     @Autowired
     public ShoeServiceImpl(ShoeSearchService shoeSearchService,
                            ShoeRepository shoeRepository,
-                           ShoeVariantRepository shoeVariantRepository,
                            ResourceLoader resourceLoader) {
         this.shoeSearchService = shoeSearchService;
         this.shoeRepository = shoeRepository;
-        this.shoeVariantRepository = shoeVariantRepository;
         this.resourceLoader = resourceLoader;
     }
 
@@ -106,28 +99,7 @@ public class ShoeServiceImpl implements ShoeService {
         }
     }
 
-    @Override
-    public List<SizedShoeDTO> getSizes(Long variantId) {
-        ShoeVariant shoeVariant = shoeVariantRepository.getOne(variantId);
-        return shoeVariant.getSizedShoes().stream()
-                .map(s -> {
-                    ShoeAvailabilityStatus status;
-                    Integer quantity = s.getQuantity();
 
-                    if (quantity <= 0) {
-                        status = ShoeAvailabilityStatus.UNAVAILABLE;
-                    } else if (quantity <= 5) {
-                        status = ShoeAvailabilityStatus.LAST_ITEMS;
-                    } else {
-                        status = ShoeAvailabilityStatus.AVAILABLE;
-                    }
-
-                    return SizedShoeDTO.builder()
-                            .size(s.getSize())
-                            .status(status)
-                            .build();
-                }).collect(Collectors.toList());
-    }
 
     private void addRelations(Shoe shoe) {
         if (shoe != null && shoe.getVariants() != null) {

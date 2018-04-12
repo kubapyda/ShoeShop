@@ -1,6 +1,5 @@
 package pl.shoeshop.shoeshop.resource;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Pageable;
@@ -10,9 +9,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import pl.shoeshop.shoeshop.dto.ShoeDTO;
 import pl.shoeshop.shoeshop.dto.ShoeSearchDTO;
-import pl.shoeshop.shoeshop.dto.SizedShoeDTO;
+import pl.shoeshop.shoeshop.dto.SizeDictionaryDTO;
 import pl.shoeshop.shoeshop.entity.Shoe;
 import pl.shoeshop.shoeshop.service.ShoeService;
+import pl.shoeshop.shoeshop.service.ShoeVariantService;
 
 import java.io.IOException;
 import java.util.List;
@@ -23,10 +23,12 @@ import java.util.Optional;
 public class ShoeResource {
 
     private ShoeService shoeService;
+    private ShoeVariantService shoeVariantService;
 
     @Autowired
-    public ShoeResource(ShoeService shoeService) {
+    public ShoeResource(ShoeService shoeService, ShoeVariantService shoeVariantService) {
         this.shoeService = shoeService;
+        this.shoeVariantService = shoeVariantService;
     }
 
     @RequestMapping(value = "find/id/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -85,8 +87,8 @@ public class ShoeResource {
     }
 
     @RequestMapping(value = "{variantId}/sizes", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<List<SizedShoeDTO>> getSizes(@PathVariable("variantId") Long variantId) {
-        List<SizedShoeDTO> result = shoeService.getSizes(variantId);
+    public ResponseEntity<List<SizeDictionaryDTO>> getSizes(@PathVariable("variantId") Long variantId) {
+        List<SizeDictionaryDTO> result = shoeVariantService.getSizes(variantId);
         return ResponseEntity.ok(result);
     }
 }

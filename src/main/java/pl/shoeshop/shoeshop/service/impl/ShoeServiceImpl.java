@@ -22,6 +22,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -43,6 +44,11 @@ public class ShoeServiceImpl implements ShoeService {
         this.shoeRepository = shoeRepository;
         this.shoeVariantRepository = shoeVariantRepository;
         this.resourceLoader = resourceLoader;
+    }
+
+    @Override
+    public Optional<Shoe> getShoe(Long id) {
+        return shoeSearchService.getShoe(id);
     }
 
     @Override

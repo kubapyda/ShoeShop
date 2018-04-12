@@ -10,8 +10,12 @@ import pl.shoeshop.shoeshop.entity.Shoe;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 public interface ShoeService {
+
+    Optional<Shoe> getShoe(Long id);
+
     List<ShoeDTO> getShoes(Pageable pageable);
 
     List<ShoeDTO> getShoes(String phrase, Pageable pageable);

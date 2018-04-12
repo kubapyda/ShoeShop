@@ -21,6 +21,7 @@ import pl.shoeshop.shoeshop.service.ShoeSearchService;
 
 import javax.persistence.EntityManager;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -37,6 +38,11 @@ public class ShoeSearchServiceImpl implements ShoeSearchService {
         this.shoeMapper = shoeMapper;
         this.shoeRepository = shoeRepository;
         this.shoeVariantRepository = shoeVariantRepository;
+    }
+
+    @Override
+    public Optional<Shoe> getShoe(Long id) {
+        return shoeRepository.findById(id);
     }
 
     @Override

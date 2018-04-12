@@ -16,6 +16,7 @@ import pl.shoeshop.shoeshop.service.ShoeService;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("shoes/")
@@ -28,9 +29,16 @@ public class ShoeResource {
         this.shoeService = shoeService;
     }
 
+    @RequestMapping(value = "find/id/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<Shoe> getShoe(@PathVariable Long id) {
+        Optional<Shoe> shoe = shoeService.getShoe(id);
+        return shoe.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
     @RequestMapping(value = "find", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<List<ShoeDTO>> getShoes(Pageable pageable) {
-        List<ShoeDTO> shoes = shoeService.getShoes(StringUtils.EMPTY, pageable);
+        List<ShoeDTO> shoes = shoeService.getShoes(pageable);
         return ResponseEntity.ok(shoes);
     }
 

@@ -1,45 +1,41 @@
 <mat-card>
   <mat-card-title>Filtry</mat-card-title>
   <mat-card-content>
-    <form class="filter-form">
+    <form class="filter-form" #filtersForm="ngForm" (ngSubmit)="filter()">
       <h4>Cena</h4>
-      <mat-form-field class="example-full-width">
-        <input matInput placeholder="Od">
+      <mat-form-field>
+        <input matInput type="number" placeholder="Od" [(ngModel)]="filters.priceFrom" name="priceFrom" #priceFrom="ngModel">
       </mat-form-field>
-      <mat-form-field class="example-full-width">
-        <input matInput placeholder="Do">
+      <mat-form-field>
+        <input matInput type="number" placeholder="Do" [(ngModel)]="filters.priceTo" name="priceTo" #priceTo="ngModel">
       </mat-form-field>
-      <h4>Rozmiar obuwia</h4>
-      <div class="button-row">
-        <button mat-button class="size-btn">37</button>
-        <button mat-button class="size-btn">38</button>
-        <button mat-button class="size-btn">39</button>
-        <button mat-button class="size-btn">40</button>
-      </div>
-      <div class="button-row mt-1">
-        <button mat-button class="size-btn">41</button>
-        <button mat-button class="size-btn">42</button>
-        <button mat-button class="size-btn">43</button>
-        <button mat-button class="size-btn">44</button>
-      </div>
-      <div class="button-row mt-1">
-        <button mat-button class="size-btn">45</button>
-        <button mat-button class="size-btn">46</button>
-        <button mat-button class="size-btn">47</button>
-        <button mat-button class="size-btn">48</button>
-      </div>
       <h4 class="mt-3">Marka</h4>
-      <mat-form-field class="example-full-width">
-        <input matInput>
+      <mat-form-field class="full-width">
+        <mat-select [(ngModel)]="filters.brands" name="brand" #brand="ngModel" multiple>
+          <mat-option *ngFor="let brand of brands" [value]="brand.value">
+            {{ brand.viewValue }}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
-      <h4>Nazwa</h4>
-      <mat-form-field class="example-full-width">
-        <input matInput>
+      <h4>Kolor obuwia</h4>
+      <mat-form-field class="full-width">
+        <mat-select [(ngModel)]="filters.shankColors" name="shankColor" #shankColor="ngModel" multiple>
+          <mat-option *ngFor="let color of colors" [value]="color.value">
+            {{ color.viewValue }}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
-      <h4>Kolor</h4>
-      <mat-form-field class="example-full-width">
-        <input matInput>
+      <h4>Kolor podeszwy</h4>
+      <mat-form-field class="full-width">
+        <mat-select [(ngModel)]="filters.soleColors" name="soleColor" #soleColor="ngModel" multiple>
+          <mat-option *ngFor="let color of colors" [value]="color.value">
+            {{ color.viewValue }}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
+      <div class="row">
+        <button mat-raised-button type="submit">Filtruj</button>
+      </div>
     </form>
   </mat-card-content>
 </mat-card>

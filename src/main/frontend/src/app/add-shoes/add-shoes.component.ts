@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 
 import { AddVariantComponent } from './add-variant/add-variant.component';
+import { Global } from './../services/global.servie';
 import { MatDialog } from '@angular/material';
 import { Shoes } from './shoes';
 import { ShoesService } from './../services/shoes.service';
@@ -16,54 +17,9 @@ import { Variant } from './add-variant/variant';
 export class AddShoesComponent implements OnInit {
 
   shoes: Shoes = new Shoes();
-
-  brands: Array<{ value: string, viewValue: string }> = [{
-    value: 'NIKE',
-    viewValue: 'Nike'
-  }, {
-    value: 'ADIDAS',
-    viewValue: 'Adidas'
-  }, {
-    value: 'REEBOK',
-    viewValue: 'Reebok'
-  }, {
-    value: 'PUMA',
-    viewValue: 'Puma'
-  }];
-
-  genders: Array<{ value: string, viewValue: string }> = [{
-    value: 'MEN',
-    viewValue: 'Mężczyźni'
-  }, {
-    value: 'WOMEN',
-    viewValue: 'Kobiety'
-  }, {
-    value: 'BOYS',
-    viewValue: 'Chłopcy'
-  }, {
-    value: 'GIRLS',
-    viewValue: 'Dziewczynki'
-  }];
-
-  types: Array<{ value: string, viewValue: string }> = [{
-    value: 'SNEAKERS',
-    viewValue: 'Trampki'
-  }, {
-    value: 'SKATE',
-    viewValue: 'Skatowe'
-  }, {
-    value: 'HEELS',
-    viewValue: 'Na obcasach'
-  }, {
-    value: 'RUNNING',
-    viewValue: 'Do biegania'
-  }, {
-    value: 'SLIPPERS',
-    viewValue: 'Kapcie'
-  }, {
-    value: 'SANDALS',
-    viewValue: 'Sandały'
-  }];
+  brands: Array<{ value: string, viewValue: string }>;
+  genders: Array<{ value: string, viewValue: string }>;
+  types: Array<{ value: string, viewValue: string }>;
 
   colors: Object = {
     RED: 'Czerwony',
@@ -75,12 +31,17 @@ export class AddShoesComponent implements OnInit {
 
   constructor(public dialog: MatDialog,
     public toastr: ToastsManager,
-    vcr: ViewContainerRef,
-    private shoesService: ShoesService) {
+    private vcr: ViewContainerRef,
+    private shoesService: ShoesService,
+    private global: Global) {
     this.toastr.setRootViewContainerRef(vcr);
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.brands = this.global.brands;
+    this.genders = this.global.genders;
+    this.types = this.global.types;
+  }
 
   openDialog() {
     let dialogRef = this.dialog.open(AddVariantComponent, {

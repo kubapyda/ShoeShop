@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Filters } from '../objects/filters';
+import { Global } from './../services/global.servie';
+import { ShoesService } from '../services/shoes.service';
+
 @Component({
   selector: 'app-filters',
   templateUrl: './filters.component.html',
@@ -7,27 +11,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FiltersComponent implements OnInit {
 
-  markOptions = [
-    {
-      id: 1,
-      value: 'Adidas'
-    }, {
-      id: 2,
-      value: 'Nike'
-    }, {
-      id: 3,
-      value: 'Puma'
-    }, {
-      id: 4,
-      value: 'Umbro'
-    }
-  ];
+  brands: Array<{ value: string, viewValue: string }>;
+  colors: Array<{ value: string, viewValue: string }>;
+  filters: Filters = new Filters();
 
-  mark: number;
-
-  constructor() { }
+  constructor(
+    private global: Global,
+    private shoesService: ShoesService
+  ) { }
 
   ngOnInit() {
+    this.brands = this.global.brands;
+    this.colors = this.global.colors;
+  }
+
+  filter() {
+    this.shoesService.filterShoes(this.filters);
   }
 
 }

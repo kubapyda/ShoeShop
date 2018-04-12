@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Global } from './../../services/global.servie';
 import { MatDialogRef } from '@angular/material';
 import { Variant } from './variant';
 
@@ -10,28 +11,16 @@ import { Variant } from './variant';
 })
 export class AddVariantComponent implements OnInit {
 
-  colors: Array<{ value: string, viewValue: string }> = [{
-    value: 'RED',
-    viewValue: 'Czerwone'
-  }, {
-    value: 'GREEN',
-    viewValue: 'Zielone'
-  }, {
-    value: 'WHITE',
-    viewValue: 'Białe'
-  }, {
-    value: 'BLACK',
-    viewValue: 'Czarne'
-  }, {
-    value: 'ORANGE',
-    viewValue: 'Pomarańczowe'
-  }];
-
+  colors: Array<{ value: string, viewValue: string }>;
   variants: Variant = new Variant();
 
-  constructor(public dialogRef: MatDialogRef<AddVariantComponent>) { }
+  constructor(
+    public dialogRef: MatDialogRef<AddVariantComponent>,
+    private global: Global
+  ) { }
 
   ngOnInit() {
+    this.colors = this.global.colors;
     this.addVariant();
   }
 

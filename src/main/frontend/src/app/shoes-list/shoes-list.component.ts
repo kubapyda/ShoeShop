@@ -10,14 +10,10 @@ import { ShoesService } from '../services/shoes.service';
 })
 export class ShoesListComponent implements OnInit {
 
-  shoes: any;
-
-  constructor(private shoesService: ShoesService) { }
+  constructor(public shoesService: ShoesService) { }
 
   ngOnInit() {
-    this.shoesService.findShoes().subscribe(data => {
-      this.shoes = data;
-    });
+    this.shoesService.findShoes();
   }
 
 }

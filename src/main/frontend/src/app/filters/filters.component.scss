@@ -1,3 +1,13 @@
-.size-btn {
-  background-color: #ddd;
+.filter-form {
+  .full-width {
+    width: 92%;
+  }
+  .row {
+    button {
+      transform: translateX(300px);
+      background-color: chocolate;
+      color: white;
+      font-size: bold;
+    }
+  }
 }

@@ -11,8 +11,7 @@ import { Variant } from './add-variant/variant';
 @Component({
   selector: 'app-add-shoes',
   templateUrl: './add-shoes.component.html',
-  styleUrls: ['./add-shoes.component.scss'],
-  providers: [ShoesService]
+  styleUrls: ['./add-shoes.component.scss']
 })
 export class AddShoesComponent implements OnInit {
 

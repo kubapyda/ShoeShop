@@ -14,6 +14,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { NgModule } from '@angular/core';
 import { ShoesComponent } from './shoes-list/shoes/shoes.component';
 import { ShoesListComponent } from './shoes-list/shoes-list.component';
+import { ShoesService } from './services/shoes.service';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 
 @NgModule({
@@ -45,7 +46,10 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
     HttpClientModule,
     ToastModule.forRoot()
   ],
-  providers: [Global],
+  providers: [
+    Global,
+    ShoesService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

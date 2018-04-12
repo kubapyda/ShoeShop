@@ -25,4 +25,8 @@ export class ShoesService {
     this.http.post(`${this.url}/find`, filters).subscribe(data => this.shoes = data);
   }
 
+  searchByPhrase(search: string) {
+    this.http.get(`${this.url}/find/${search}`).subscribe(data => this.shoes = data);
+  }
+
 }

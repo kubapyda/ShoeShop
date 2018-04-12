@@ -1,13 +1,34 @@
-.navbar-menu {
-  list-style-type: none;
-  margin: 0;
-  li {
-    float: left;
-    a {
-      padding: 0 15px;
-      &:hover {
-        text-decoration: none;
+mat-toolbar {
+  background-color: black;
+  width: 102%;
+  margin-left: -15px;
+  a {
+    color: white;
+    &:hover {
+      text-decoration: none;
+      color: #ddd;
+    }
+  }
+  .navbar-menu {
+    list-style-type: none;
+    margin: 0;
+    li {
+      float: left;
+      a {
+        color: white;
+        padding: 0 15px;
+        &:hover {
+          text-decoration: none;
+          color: #ddd;
+        }
       }
+    }
+  }
+  button {
+    background-color: #33a94e;
+    color: white;
+    &:hover {
+      background-color: darken(#33a94e, $amount: 5);
     }
   }
 }

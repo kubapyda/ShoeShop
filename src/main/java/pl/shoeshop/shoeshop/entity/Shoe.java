@@ -53,5 +53,4 @@ public class Shoe {
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "shoe")
     @Fetch(FetchMode.SUBSELECT)
     private List<ShoeVariant> variants;
-
 }

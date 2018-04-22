@@ -1,6 +1,10 @@
 package pl.shoeshop.shoeshop.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Cascade;
 import pl.shoeshop.shoeshop.type.OrderStatusType;
 
 import javax.persistence.*;
@@ -10,6 +14,9 @@ import java.util.List;
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name="t_order")
 public class Order {
@@ -35,6 +42,6 @@ public class Order {
     @Column
     private ZonedDateTime deliveryDate;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
     private List<OrderedShoe> orderedShoes;
 }

@@ -8,9 +8,6 @@ import java.util.List;
 @Data
 public class OrderDTO {
 
-    private String name;
-    private String surname;
-    private String email;
-    private Address address;
+    private ReceiverDTO receiver;
     private List<VariantDTO> variants;
 }

@@ -7,4 +7,5 @@ public class VariantDTO {
 
     private Long variantId;
     private Integer size;
+    private Integer quantity;
 }

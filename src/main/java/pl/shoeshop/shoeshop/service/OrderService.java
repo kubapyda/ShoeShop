@@ -8,6 +8,7 @@ import pl.shoeshop.shoeshop.type.OrderStatusType;
 import java.util.List;
 
 public interface OrderService {
+
     List<Order> getOrders(OrderStatusType status, Pageable pageable);
 
     void changeStatus(Long id, OrderStatusType status);

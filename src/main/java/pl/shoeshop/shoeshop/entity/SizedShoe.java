@@ -37,4 +37,7 @@ public class SizedShoe {
     @ManyToOne
     @JsonIgnore
     private ShoeVariant shoeVariant;
+
+    @OneToMany(mappedBy = "sizedShoe")
+    private List<OrderedShoe> orderedShoes;
 }

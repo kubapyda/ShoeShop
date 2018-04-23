@@ -17,6 +17,10 @@ export class ShoesService {
     this.http.get(`${this.url}/find`).subscribe(data => this.shoes = data);
   }
 
+  findShoesById(id: number) {
+    return this.http.get<Shoes>(`${this.url}/find/id/${id}`);
+  }
+
   addShoes(shoes: Shoes) {
     return this.http.post(`${this.url}/add`, shoes);
   }

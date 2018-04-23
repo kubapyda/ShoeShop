@@ -1,4 +1,4 @@
-import { MatButtonModule, MatCardModule, MatChipsModule, MatDialogModule, MatIconModule, MatInputModule, MatSelectModule, MatToolbarModule } from '@angular/material';
+import { MatButtonModule, MatCardModule, MatChipsModule, MatDialogModule, MatIconModule, MatInputModule, MatListModule, MatSelectModule, MatToolbarModule } from '@angular/material';
 
 import { AddShoesComponent } from './add-shoes/add-shoes.component';
 import { AddVariantComponent } from './add-shoes/add-variant/add-variant.component';
@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NgModule } from '@angular/core';
 import { ShoesComponent } from './shoes-list/shoes/shoes.component';
+import { ShoesDetailComponent } from './shoes-detail/shoes-detail.component';
 import { ShoesListComponent } from './shoes-list/shoes-list.component';
 import { ShoesService } from './services/shoes.service';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
@@ -25,7 +26,8 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
     NavbarComponent,
     ShoesListComponent,
     ShoesComponent,
-    AddVariantComponent
+    AddVariantComponent,
+    ShoesDetailComponent
   ],
   entryComponents: [
     AddVariantComponent
@@ -42,6 +44,7 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
     MatCardModule,
     MatChipsModule,
     MatDialogModule,
+    MatListModule,
     AppRoutingModule,
     HttpClientModule,
     ToastModule.forRoot()

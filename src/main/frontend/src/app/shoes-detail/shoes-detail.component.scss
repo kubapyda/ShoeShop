@@ -1,0 +1,33 @@
+.container {
+  .shoes-information {
+    width: 350px;
+    vertical-align: top;
+    display: inline-block;
+    .color-variants {
+      width: 50px;
+      height: 50px;
+      display: inline-block;
+      box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.75);
+      border-radius: 50%;
+    }
+    .add-to-cart {
+      width: 100%;
+      background-color: #33a94e;
+      color: white;
+      font-weight: bold;
+      font-size: 20px;
+    }
+  }
+  .mat-list {
+    width: 80%;
+    margin: 20px auto 0;
+    .mat-list-item h4 {
+        width: 50%;
+        font-size: inherit;
+        font-weight: 600;
+    }
+    .mat-divider {
+      position: relative;
+    }
+  }
+}

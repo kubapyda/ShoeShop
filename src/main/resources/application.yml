@@ -11,9 +11,10 @@ spring:
     change-log: classpath:liquibase/master.xml
 
   datasource:
-    url: jdbc:mysql://localhost:3306/shoeshop
+    url: jdbc:mysql://shoeshop.cwttoar5v1wj.us-east-2.rds.amazonaws.com:3306/shoeshop
     username: root
-    password: admin
+    password: adminnnn
+    #url: jdbc:mysql://localhost:3306/shoeshop
 
   jpa:
     show-sql: true

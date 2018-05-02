@@ -1,6 +1,7 @@
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
-import { ActivatedRoute } from '@angular/router';
+import { OrderService } from '../services/order.service';
 import { Shoes } from '../add-shoes/shoes';
 import { ShoesService } from '../services/shoes.service';
 import { Variant } from './../add-shoes/add-variant/variant';
@@ -15,17 +16,19 @@ export class ShoesDetailComponent implements OnInit {
   shoes: Shoes;
   variant: Variant;
   gender: Array<{ value: string, viewValue: string }>;
-  toShoppingCart: { variant: number, size: number } = { variant: null, size: null };
+  toShoppingCart: { variantId: number, size: number, quantity: number } = { variantId: null, size: null, quantity: 1 };
 
   constructor(
     private shoesService: ShoesService,
-    private router: ActivatedRoute
+    private router: ActivatedRoute,
+    private order: OrderService,
+    private route: Router
   ) { }
 
   ngOnInit() {
     const id: number = +this.router.snapshot.params['id'];
     const variantId: number = +this.router.snapshot.params['variantId'];
-    this.toShoppingCart.variant = variantId;
+    this.toShoppingCart.variantId = variantId;
     this.shoesService.findShoesById(id).subscribe(shoes => {
       this.shoes = shoes;
       this.variant = this.shoes.variants.find(variant => variant.id === variantId);
@@ -37,7 +40,15 @@ export class ShoesDetailComponent implements OnInit {
   }
 
   addToShopingCart() {
-    console.log(this.toShoppingCart);
+    this.order.addProduct({
+      variantId: this.toShoppingCart.variantId,
+      size: this.toShoppingCart.size,
+      quantity: 1,
+      brand: this.shoes.brand,
+      model: this.shoes.model,
+      price: this.shoes.price
+    });
+    this.route.navigate(['shopping-cart']);
   }
 
 }

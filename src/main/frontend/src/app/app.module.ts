@@ -12,10 +12,13 @@ import { Global } from './services/global.servie';
 import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NgModule } from '@angular/core';
+import { OnlyNumber } from './directives/only-number.directive';
+import { OrderService } from './services/order.service';
 import { ShoesComponent } from './shoes-list/shoes/shoes.component';
 import { ShoesDetailComponent } from './shoes-detail/shoes-detail.component';
 import { ShoesListComponent } from './shoes-list/shoes-list.component';
 import { ShoesService } from './services/shoes.service';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 
 @NgModule({
@@ -27,7 +30,9 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
     ShoesListComponent,
     ShoesComponent,
     AddVariantComponent,
-    ShoesDetailComponent
+    ShoesDetailComponent,
+    ShoppingCartComponent,
+    OnlyNumber
   ],
   entryComponents: [
     AddVariantComponent
@@ -51,7 +56,8 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
   ],
   providers: [
     Global,
-    ShoesService
+    ShoesService,
+    OrderService
   ],
   bootstrap: [AppComponent]
 })

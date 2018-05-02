@@ -14,7 +14,7 @@
           <div class="sizes-button">
             <button mat-raised-button *ngFor="let size of variant?.sizedShoes" (click)="selectSize(size.size)">{{ size.size }}</button>
           </div>
-          <button mat-raised-button class="add-to-cart mt-3" [disabled]="!(toShoppingCart.variant && toShoppingCart.size)" (click)="addToShopingCart()">DODAJ DO KOSZYKA</button>
+          <button mat-raised-button class="add-to-cart mt-3" [disabled]="!(toShoppingCart.variantId && toShoppingCart.size)" (click)="addToShopingCart()">DODAJ DO KOSZYKA</button>
         </mat-card-content>
       </mat-card>
       <mat-list>

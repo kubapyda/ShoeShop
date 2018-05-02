@@ -4,6 +4,7 @@ import { AddShoesComponent } from './add-shoes/add-shoes.component';
 import { NgModule } from "@angular/core";
 import { ShoesDetailComponent } from './shoes-detail/shoes-detail.component';
 import { ShoesListComponent } from "./shoes-list/shoes-list.component";
+import { ShoppingCartComponent } from "./shopping-cart/shopping-cart.component";
 
 const appRoutes: Routes = [
   {
@@ -15,6 +16,9 @@ const appRoutes: Routes = [
   }, {
     path: 'shoes/:id/variant/:variantId',
     component: ShoesDetailComponent
+  }, {
+    path: 'shopping-cart',
+    component: ShoppingCartComponent
   }
 ];
 

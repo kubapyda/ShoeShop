@@ -1,0 +1,54 @@
+.container {
+  mat-list-item {
+    h4 {
+      font-size: 1.5rem;
+    }
+    mat-chip-list {
+      mat-chip {
+        font-size: 18px;
+        margin-right: 50px;
+      }
+    }
+    &.product {
+      height: 125px;
+    }
+    .product-image {
+      width: 85px;
+      height: 85px;
+      margin-bottom: 10px;
+    }
+    .product-quantity {
+      text-align: center;
+      width: 30px;
+    }
+    .remove {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      font-size: 35px;
+      color: red;
+      transform: translate(-10px, -50%);
+      cursor: pointer;
+      font-weight: 500;
+      text-shadow: -1px 0 black, 0 0.5px black, 0.5px 0 black, 0 -1px black;
+      &:hover {
+        text-decoration: none;
+        color: darken(red, 10%);
+      }
+    }
+  }
+  h2 {
+    text-align: right;
+    font-weight: 600;
+  }
+  button {
+    font-size: 22px;
+    padding: 6px 16px;
+    &.make-order {
+      background-color: #33a94e;
+      color: white;
+      position: absolute;
+      right: 24px;
+    }
+  }
+}

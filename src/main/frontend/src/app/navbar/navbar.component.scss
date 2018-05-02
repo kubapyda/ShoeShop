@@ -27,6 +27,14 @@ mat-toolbar {
   button {
     background-color: #33a94e;
     color: white;
+    &.shopping-cart-button {
+      position: absolute;
+      right: 24px;
+      .shopping-cart-icon {
+        font-size: 25px;
+        padding: 0 10px 3px 0;
+      }
+    }
     &:hover {
       background-color: darken(#33a94e, $amount: 5);
     }

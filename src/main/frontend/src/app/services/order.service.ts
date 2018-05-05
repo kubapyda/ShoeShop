@@ -14,6 +14,9 @@ export class OrderService {
 
   constructor(private http: HttpClient, private global: Global) {
     this.url = `${global.apiAddress}/orders`;
+    if (!localStorage.getItem(this.localStorageItem)) {
+      localStorage.setItem(this.localStorageItem, JSON.stringify(this.variants));
+    }
   }
 
   makeOrder(order: { receiver: Receiver, variants: Array<{ variantId: number, size: number, quantity: number }> }) {
@@ -45,11 +48,7 @@ export class OrderService {
   }
 
   getProduct() {
-    if (localStorage.getItem(this.localStorageItem)) {
-      this.variants = JSON.parse(localStorage.getItem(this.localStorageItem));
-    } else {
-      this.variants = [];
-    }
+    this.variants = JSON.parse(localStorage.getItem(this.localStorageItem));
     return this.variants;
   }
 

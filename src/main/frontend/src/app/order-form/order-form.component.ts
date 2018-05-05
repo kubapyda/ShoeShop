@@ -64,14 +64,18 @@ export class OrderFormComponent implements OnInit {
       variants: variants
     };
     this.order.makeOrder(order).subscribe(success => {
-      console.log(success);
+      const orderConfirmationRef = this.dialog.open(OrderConfirmationComponent, {
+        width: '60%',
+        disableClose: true,
+        data: { isError: false }
+      });
     }, error => {
-      console.log(error);
+      const orderConfirmationRef = this.dialog.open(OrderConfirmationComponent, {
+        width: '60%',
+        disableClose: true,
+        data: { isError: true }
+      });
     });
-    // console.log(order);
-    // const orderConfirmationRef = this.dialog.open(OrderConfirmationComponent, {
-    //   width: '75%'
-    // });
   }
 
 }

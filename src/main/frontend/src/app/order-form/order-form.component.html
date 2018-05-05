@@ -79,7 +79,7 @@
           <div class="col-12">
             <label>Numer budynku</label>
             <mat-form-field class="input-width">
-              <input matInput [formControl]="orderForm.flatNumber" [errorStateMatcher]="matcher" [(ngModel)]="order.receiver.address.flatNumber">
+              <input matInput appOnlyNumber="true" [formControl]="orderForm.flatNumber" [errorStateMatcher]="matcher" [(ngModel)]="order.receiver.address.flatNumber">
               <mat-error *ngIf="orderForm.flatNumber.hasError('required')">
                 To pole jest wymagane
               </mat-error>
@@ -90,7 +90,7 @@
           <div class="col-12">
             <label>Numer lokalu</label>
             <mat-form-field class="input-width">
-              <input matInput [formControl]="orderForm.localNumber" [errorStateMatcher]="matcher" [(ngModel)]="order.receiver.address.localNumber">
+              <input matInput appOnlyNumber="true" [formControl]="orderForm.localNumber" [errorStateMatcher]="matcher" [(ngModel)]="order.receiver.address.localNumber">
             </mat-form-field>
           </div>
         </div>

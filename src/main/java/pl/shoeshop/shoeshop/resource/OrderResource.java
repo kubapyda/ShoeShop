@@ -34,7 +34,7 @@ public class OrderResource {
         return ResponseEntity.ok().build();
     }
 
-    @RequestMapping(value = "order", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping(value = "order", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<?> order(@Valid @RequestBody OrderDTO order) {
         orderService.order(order);
         return ResponseEntity.ok().build();

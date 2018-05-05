@@ -20,7 +20,7 @@ export class OrderService {
   }
 
   makeOrder(order: { receiver: Receiver, variants: Array<{ variantId: number, size: number, quantity: number }> }) {
-    return this.http.put(`${this.url}/order`, order);
+    return this.http.post(`${this.url}/order`, order);
   }
 
   addProduct(product: { variantId: number, size: number, quantity: number, brand: string, model: string, price: number }) {

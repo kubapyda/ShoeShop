@@ -45,7 +45,11 @@ export class OrderService {
   }
 
   getProduct() {
-    this.variants = JSON.parse(localStorage.getItem(this.localStorageItem));
+    if (localStorage.getItem(this.localStorageItem)) {
+      this.variants = JSON.parse(localStorage.getItem(this.localStorageItem));
+    } else {
+      this.variants = [];
+    }
     return this.variants;
   }
 

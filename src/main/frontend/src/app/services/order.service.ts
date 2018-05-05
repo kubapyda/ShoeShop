@@ -1,11 +1,24 @@
+import { Global } from './global.servie';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Receiver } from '../objects/receiver';
 
 @Injectable()
 export class OrderService {
 
   variants: Array<{ variantId: number, size: number, quantity: number, brand: string, model: string, price: number }> = [];
+  receiver: Receiver = new Receiver();
   totalPrice: number = 0;
+  url: string;
   localStorageItem: string = 'shoppingCart';
+
+  constructor(private http: HttpClient, private global: Global) {
+    this.url = `${global.apiAddress}/orders`;
+  }
+
+  makeOrder(order: { receiver: Receiver, variants: Array<{ variantId: number, size: number, quantity: number }> }) {
+    return this.http.put(`${this.url}/order`, order);
+  }
 
   addProduct(product: { variantId: number, size: number, quantity: number, brand: string, model: string, price: number }) {
     this.variants = JSON.parse(localStorage.getItem(this.localStorageItem));

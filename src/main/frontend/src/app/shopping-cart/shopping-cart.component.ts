@@ -23,8 +23,4 @@ export class ShoppingCartComponent implements OnInit {
     this.order.getTotalPrice();
   }
 
-  makeOrder() {
-    // TODO: 
-  }
-
 }

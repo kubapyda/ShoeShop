@@ -1,3 +1,4 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule, MatCardModule, MatChipsModule, MatDialogModule, MatIconModule, MatInputModule, MatListModule, MatSelectModule, MatToolbarModule } from '@angular/material';
 
 import { AddShoesComponent } from './add-shoes/add-shoes.component';
@@ -7,12 +8,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { FiltersComponent } from './filters/filters.component';
-import { FormsModule } from '@angular/forms';
 import { Global } from './services/global.servie';
 import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NgModule } from '@angular/core';
 import { OnlyNumber } from './directives/only-number.directive';
+import { OrderConfirmationComponent } from './order-form/order-confirmation/order-confirmation.component';
+import { OrderFormComponent } from './order-form/order-form.component';
 import { OrderService } from './services/order.service';
 import { ShoesComponent } from './shoes-list/shoes/shoes.component';
 import { ShoesDetailComponent } from './shoes-detail/shoes-detail.component';
@@ -32,14 +34,18 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
     AddVariantComponent,
     ShoesDetailComponent,
     ShoppingCartComponent,
-    OnlyNumber
+    OnlyNumber,
+    OrderFormComponent,
+    OrderConfirmationComponent
   ],
   entryComponents: [
-    AddVariantComponent
+    AddVariantComponent,
+    OrderConfirmationComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     MatInputModule,
     MatButtonModule,

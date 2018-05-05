@@ -23,6 +23,6 @@
     <p *ngIf="!order.variants.length" class="mt-5">Koszyk jest pusty.</p>
     <h2 class="my-4">ŁĄCZNIE: {{order.totalPrice}}ZŁ</h2>
     <button mat-raised-button class="mt-3" [routerLink]="['/']">WRÓĆ DO SKLEPU</button>
-    <button mat-raised-button class="make-order mt-3" (click)="makeOrder()">DOKONAJ ZAKUPU</button>
+    <button mat-raised-button class="make-order mt-3" [routerLink]="['../order-form']" [disabled]="!order.variants.length">DOKONAJ ZAKUPU</button>
   </mat-card>
 </div>

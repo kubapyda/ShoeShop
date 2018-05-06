@@ -86,6 +86,7 @@ public class ShoeServiceImpl implements ShoeService {
         return resourceLoader.getResource("file:" + UPLOAD_ROOT + "/" + variantId + ".png");
     }
 
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     @Override
     public void setImage(Long variantId, MultipartFile file) throws IOException {
         if (!file.isEmpty()) {

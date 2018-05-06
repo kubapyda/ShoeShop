@@ -17,3 +17,7 @@ spring:
 
   jpa:
     show-sql: true
+
+jwt:
+  secret: bXlzZWNyZXQ=
+  validity: 86400000

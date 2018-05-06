@@ -28,7 +28,7 @@ public class Account {
     private String password;
 
     @Column
+    @Enumerated(EnumType.STRING)
     private RoleType role;
-
 }
 

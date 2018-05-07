@@ -1,57 +1,39 @@
 package pl.shoeshop.shoeshop.service.impl;
 
-import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.BooleanExpression;
-import com.querydsl.core.types.dsl.CaseBuilder;
-import com.querydsl.core.types.dsl.StringExpression;
-import com.querydsl.jpa.impl.JPAQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.shoeshop.shoeshop.dto.SizeDictionaryDTO;
 import pl.shoeshop.shoeshop.dto.VariantDTO;
 import pl.shoeshop.shoeshop.entity.QSizedShoe;
 import pl.shoeshop.shoeshop.entity.SizedShoe;
+import pl.shoeshop.shoeshop.projection.SizeDictionary;
+import pl.shoeshop.shoeshop.repository.ShoeVariantRepository;
 import pl.shoeshop.shoeshop.repository.SizedShoeRepository;
 import pl.shoeshop.shoeshop.service.ShoeVariantService;
-import pl.shoeshop.shoeshop.type.AvailabilityType;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Service
 public class ShoeVariantServiceImpl implements ShoeVariantService {
 
-    @PersistenceContext
-    private EntityManager entityManager;
+    private ShoeVariantRepository shoeVariantRepository;
     private SizedShoeRepository sizedShoeRepository;
 
     @Autowired
-    public ShoeVariantServiceImpl(SizedShoeRepository sizedShoeRepository) {
+    public ShoeVariantServiceImpl(ShoeVariantRepository shoeVariantRepository,
+                                  SizedShoeRepository sizedShoeRepository) {
+        this.shoeVariantRepository = shoeVariantRepository;
         this.sizedShoeRepository = sizedShoeRepository;
     }
 
     @Override
-    public List<SizeDictionaryDTO> getSizes(Long variantId) {
-        QSizedShoe sizedShoe = QSizedShoe.sizedShoe;
-        JPAQuery<SizeDictionaryDTO> query = new JPAQuery<>(entityManager);
-
-        StringExpression caseExpression = new CaseBuilder()
-                .when(sizedShoe.quantity.loe(0))
-                .then(AvailabilityType.UNAVAILABLE.name())
-                .when(sizedShoe.quantity.loe(5))
-                .then(AvailabilityType.LAST_PIECES.name())
-                .otherwise(AvailabilityType.AVAILABLE.name());
-
-        return query.from(sizedShoe)
-                .select(Projections.constructor(SizeDictionaryDTO.class, sizedShoe.size, caseExpression))
-                .fetch();
+    public List<SizeDictionary> getSizes(Long variantId) {
+        return shoeVariantRepository.getAvailabilityPerSize(variantId);
     }
 
     @Override
     public Iterable<SizedShoe> getSizedShoes(List<VariantDTO> variants) {
         QSizedShoe sizedShoe = QSizedShoe.sizedShoe;
-        JPAQuery<SizeDictionaryDTO> query = new JPAQuery<>(entityManager);
 
         BooleanExpression expression = sizedShoe.isNull();
 

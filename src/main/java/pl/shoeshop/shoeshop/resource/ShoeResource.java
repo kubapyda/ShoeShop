@@ -14,6 +14,7 @@ import pl.shoeshop.shoeshop.entity.Shoe;
 import pl.shoeshop.shoeshop.service.ShoeService;
 import pl.shoeshop.shoeshop.service.ShoeVariantService;
 
+import javax.validation.Valid;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
@@ -57,13 +58,13 @@ public class ShoeResource {
     }
 
     @RequestMapping(value = "add", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<Shoe> addShoe(@RequestBody Shoe shoe) {
+    public ResponseEntity<Shoe> addShoe(@Valid @RequestBody Shoe shoe) {
         shoeService.addShoe(shoe);
         return ResponseEntity.ok(shoe);
     }
 
     @RequestMapping(value = "edit", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<Shoe> editShoe(@RequestBody Shoe shoe) {
+    public ResponseEntity<Shoe> editShoe(@Valid @RequestBody Shoe shoe) {
         shoeService.editShoe(shoe);
         return ResponseEntity.ok(shoe);
     }

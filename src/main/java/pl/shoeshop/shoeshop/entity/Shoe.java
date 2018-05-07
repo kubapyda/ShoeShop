@@ -11,6 +11,10 @@ import pl.shoeshop.shoeshop.type.GenderType;
 import pl.shoeshop.shoeshop.type.ShoeType;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -30,13 +34,16 @@ public class Shoe {
     private Long id;
 
     @Column
+    @NotNull
     @Enumerated(EnumType.STRING)
     private BrandType brand;
 
     @Column
+    @NotBlank
     private String model;
 
     @Column(precision = 6, scale = 2)
+    @Min(0)
     private BigDecimal price;
 
     @Column
@@ -52,5 +59,6 @@ public class Shoe {
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "shoe")
     @Fetch(FetchMode.SUBSELECT)
+    @NotEmpty
     private List<ShoeVariant> variants;
 }

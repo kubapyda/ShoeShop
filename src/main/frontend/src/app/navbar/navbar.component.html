@@ -1,20 +1,20 @@
 <mat-toolbar>
-  <a [routerLink]="['']" class="navbar-brand">ShoeShop</a>
+  <a [routerLink]="['']" class="navbar-brand">SKLEP OBUWNICZY</a>
   <ul class="navbar-menu">
     <li>
-      <a href="#">Męskie</a>
+      <a [routerLink]="['']" (click)="searchByGender('MEN')">Męskie</a>
     </li>
     <li>
-      <a href="#">Damskie</a>
+      <a [routerLink]="['']" (click)="searchByGender('WOMEN')">Damskie</a>
     </li>
     <li>
-      <a href="#">Dziecięce</a>
+      <a [routerLink]="['']" (click)="searchByGender('BOYS')">Dla chłopców</a>
     </li>
     <li>
-      <a href="#">Sportowe</a>
+      <a [routerLink]="['']" (click)="searchByGender('GIRLS')">Dla dziewcząt</a>
     </li>
   </ul>
-  <form class="form-inline my-2 my-lg-0" #searchForm="ngForm" (ngSubmit)="searchByPhrase()">
+  <form class="form-inline my-2 my-lg-0 mx-auto" #searchForm="ngForm" (ngSubmit)="searchByPhrase()">
     <input class="form-control mr-sm-2" type="search" placeholder="Szukaj" aria-label="Search" name="searchInput" [(ngModel)]="searchText"
       #searchInput="ngModel">
     <button mat-raised-button class="my-2 my-sm-0" type="submit">Szukaj</button>

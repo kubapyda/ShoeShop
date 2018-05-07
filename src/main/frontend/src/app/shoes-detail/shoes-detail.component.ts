@@ -1,6 +1,7 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
+import { Global } from './../services/global.servie';
 import { OrderService } from '../services/order.service';
 import { Shoes } from '../add-shoes/shoes';
 import { ShoesService } from '../services/shoes.service';
@@ -14,29 +15,44 @@ import { Variant } from './../add-shoes/add-variant/variant';
 export class ShoesDetailComponent implements OnInit {
 
   shoes: Shoes;
-  variant: Variant;
+  variants: Variant;
   gender: Array<{ value: string, viewValue: string }>;
+  id: number;
+  selectedSize: number = -1;
   toShoppingCart: { variantId: number, size: number, quantity: number } = { variantId: null, size: null, quantity: 1 };
 
   constructor(
     private shoesService: ShoesService,
     private router: ActivatedRoute,
     private order: OrderService,
+    private global: Global,
     private route: Router
   ) { }
 
   ngOnInit() {
-    const id: number = +this.router.snapshot.params['id'];
+    this.getShoesDetail();
+  }
+
+  getShoesDetail() {
     const variantId: number = +this.router.snapshot.params['variantId'];
+    this.id = +this.router.snapshot.params['id'];
+    this.global.loaderTrue();
     this.toShoppingCart.variantId = variantId;
-    this.shoesService.findShoesById(id).subscribe(shoes => {
+    this.shoesService.findShoesById(this.id).subscribe(shoes => {
       this.shoes = shoes;
-      this.variant = this.shoes.variants.find(variant => variant.id === variantId);
+      this.variants = this.shoes.variants.find(variant => variant.id === variantId);
+      this.global.loaderFalse();
     });
   }
 
-  selectSize(size: number) {
+  selectSize(size: number, index: number) {
     this.toShoppingCart.size = size;
+    this.selectedSize = index;
+  }
+
+  getOtherVariant(variantId: number) {
+    this.variants = this.shoes.variants.find(variant => variant.id === variantId);
+    this.selectedSize = -1;
   }
 
   addToShopingCart() {

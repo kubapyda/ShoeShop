@@ -2,6 +2,8 @@
 @import '~@angular/material/theming';
 @import "~font-awesome/css/font-awesome.css";
 @import url('//fonts.googleapis.com/icon?family=Material+Icons');
+@import url('https://fonts.googleapis.com/css?family=Luckiest+Guy');
+@import "~ng2-toastr/bundles/ng2-toastr.min.css";
 
 @include mat-core();
 
@@ -20,4 +22,12 @@ body {
 
 h1, h2, h3, h4 {
     font-weight: normal;
+}
+
+.mat-progress-spinner {
+  margin: 0 auto;
+  margin-top: calc(50vh - 75px);
+  svg circle {
+    stroke: #33a94e;
+  }
 }

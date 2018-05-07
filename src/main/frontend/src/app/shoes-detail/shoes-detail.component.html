@@ -9,10 +9,11 @@
           </h2>
           <h3 class="mt-4">Wybierz kolor:</h3>
           <span *ngFor="let variant of shoes?.variants" class="color-variants mr-2 mt-2" [ngStyle]="{backgroundColor: variant.shankColor}"
-            [routerLink]="['../', variant.id]"></span>
+            [routerLink]="['../', variant.id]" (click)="getOtherVariant(variant.id)"></span>
           <h3 class="mt-4">Wybierz rozmiar:</h3>
           <div class="sizes-button">
-            <button mat-raised-button *ngFor="let size of variant?.sizedShoes" (click)="selectSize(size.size)">{{ size.size }}</button>
+            <button mat-raised-button *ngFor="let size of variants?.sizedShoes; let idx = index" (click)="selectSize(size.size, idx)"
+              [ngClass]="{'selected-size': idx === selectedSize }">{{ size.size }}</button>
           </div>
           <button mat-raised-button class="add-to-cart mt-3" [disabled]="!(toShoppingCart.variantId && toShoppingCart.size)" (click)="addToShopingCart()">DODAJ DO KOSZYKA</button>
         </mat-card-content>

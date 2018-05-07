@@ -1,17 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroupDirective, NgControl, NgForm, Validators } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 
 import { ErrorStateMatcher } from '@angular/material/core';
+import { Global } from '../services/global.servie';
 import { MatDialog } from '@angular/material';
+import { MyErrorStateMatcher } from '../objects/my-error-state-matcher';
 import { OrderConfirmationComponent } from './order-confirmation/order-confirmation.component';
 import { OrderService } from './../services/order.service';
-
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-  }
-}
 
 @Component({
   selector: 'app-order-form',
@@ -33,7 +28,8 @@ export class OrderFormComponent implements OnInit {
 
   constructor(
     public order: OrderService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public global: Global
   ) { }
 
   ngOnInit() {
@@ -50,6 +46,7 @@ export class OrderFormComponent implements OnInit {
   }
 
   makeOrder() {
+    this.global.loaderTrue();
     const variants = this.order.variants.map(variant => {
       return {
         variantId: variant.variantId,
@@ -64,12 +61,14 @@ export class OrderFormComponent implements OnInit {
       variants: variants
     };
     this.order.makeOrder(order).subscribe(success => {
+      this.global.loaderFalse();
       const orderConfirmationRef = this.dialog.open(OrderConfirmationComponent, {
         width: '60%',
         disableClose: true,
         data: { isError: false }
       });
     }, error => {
+      this.global.loaderFalse();
       const orderConfirmationRef = this.dialog.open(OrderConfirmationComponent, {
         width: '60%',
         disableClose: true,

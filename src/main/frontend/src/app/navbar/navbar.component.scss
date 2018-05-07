@@ -2,6 +2,10 @@ mat-toolbar {
   background-color: black;
   width: 101.6%;
   margin-left: -15px;
+  .navbar-brand {
+    font-family: 'Luckiest Guy', cursive;
+    font-size: 30px;
+  }
   a {
     color: white;
     &:hover {
@@ -28,8 +32,6 @@ mat-toolbar {
     background-color: #33a94e;
     color: white;
     &.shopping-cart-button {
-      position: absolute;
-      right: 24px;
       .shopping-cart-icon {
         font-size: 25px;
         padding: 0 10px 3px 0;

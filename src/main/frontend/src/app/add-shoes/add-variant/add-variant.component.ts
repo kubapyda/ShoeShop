@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 
 import { Global } from './../../services/global.servie';
 import { MatDialogRef } from '@angular/material';
+import { MyErrorStateMatcher } from './../../objects/my-error-state-matcher';
 import { Variant } from './variant';
 
 @Component({
@@ -13,6 +15,11 @@ export class AddVariantComponent implements OnInit {
 
   colors: Array<{ value: string, viewValue: string }>;
   variants: Variant = new Variant();
+  matcher = new MyErrorStateMatcher();
+  variantsForm = {
+    shankColor: new FormControl(null, [Validators.required]),
+    soleColor: new FormControl(null, [Validators.required]),
+  };
 
   constructor(
     public dialogRef: MatDialogRef<AddVariantComponent>,
@@ -29,6 +36,7 @@ export class AddVariantComponent implements OnInit {
   }
 
   saveVariant(): void {
+    this.global.loaderTrue();
     this.dialogRef.close(this.variants);
   }
 

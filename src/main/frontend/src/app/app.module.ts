@@ -1,5 +1,5 @@
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatButtonModule, MatCardModule, MatChipsModule, MatDialogModule, MatIconModule, MatInputModule, MatListModule, MatSelectModule, MatToolbarModule } from '@angular/material';
+import { MatButtonModule, MatCardModule, MatChipsModule, MatDialogModule, MatIconModule, MatInputModule, MatListModule, MatProgressSpinnerModule, MatSelectModule, MatToolbarModule } from '@angular/material';
 
 import { AddShoesComponent } from './add-shoes/add-shoes.component';
 import { AddVariantComponent } from './add-shoes/add-variant/add-variant.component';
@@ -56,6 +56,7 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
     MatChipsModule,
     MatDialogModule,
     MatListModule,
+    MatProgressSpinnerModule,
     AppRoutingModule,
     HttpClientModule,
     ToastModule.forRoot()

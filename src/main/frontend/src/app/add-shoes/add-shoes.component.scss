@@ -1,32 +1,42 @@
-.row {
-  label{
-    padding-left: 25px;
-    width: 200px;
-  }
-  .input-width {
-    width: 65%;
-  }
-  ul {
-    list-style-type: none;
-    display: inline-block;
-    width: 56%;
-    li {
-      padding: 15px 15px 5px;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-      span {
-        font-size: 100%;
+form {
+  margin: 0 auto;
+  width: 745px;
+  .row {
+    label{
+      padding-right: 15px;
+      width: 70px;
+      text-align: right;
+    }
+    .input-width {
+      width: 650px;
+    }
+    ul {
+      list-style-type: none;
+      display: inline-block;
+      width: 56%;
+      li {
+        padding: 15px 15px 5px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+        span {
+          font-size: 100%;
+        }
       }
     }
-  }
-  &.mt-3 {
-    label, button {
-      vertical-align: top;
+    &.mt-3 {
+      label, button {
+        vertical-align: top;
+      }
+      button {
+        background-color: chocolate;
+        color: white;
+      }
     }
-  }
-  &.marg-left {
-    margin-left: 76%;
-    button {
-      background-color: chartreuse;
+    &.marg-left {
+      margin-left: 100%;
+      button {
+        background-color: #33a94e;
+        color: white;
+      }
     }
   }
 }

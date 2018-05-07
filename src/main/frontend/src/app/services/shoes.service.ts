@@ -14,7 +14,11 @@ export class ShoesService {
   }
 
   findShoes() {
-    this.http.get(`${this.url}/find`).subscribe(data => this.shoes = data);
+    this.global.loaderTrue();
+    this.http.get(`${this.url}/find`).subscribe(data => {
+      this.shoes = data;
+      this.global.loaderFalse();
+    });
   }
 
   findShoesById(id: number) {
@@ -26,11 +30,19 @@ export class ShoesService {
   }
 
   filterShoes(filters: Filters) {
-    this.http.post(`${this.url}/find`, filters).subscribe(data => this.shoes = data);
+    this.global.loaderTrue();
+    this.http.post(`${this.url}/find`, filters).subscribe(data => {
+      this.shoes = data;
+      this.global.loaderFalse();
+    });
   }
 
   searchByPhrase(search: string) {
-    this.http.get(`${this.url}/find/${search}`).subscribe(data => this.shoes = data);
+    this.global.loaderTrue();
+    this.http.get(`${this.url}/find/${search}`).subscribe(data => {
+      this.shoes = data;
+      this.global.loaderFalse();
+    });
   }
 
 }

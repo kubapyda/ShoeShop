@@ -1,13 +1,12 @@
 <mat-card>
-  <mat-card-title>Filtry</mat-card-title>
   <mat-card-content>
     <form class="filter-form" #filtersForm="ngForm" (ngSubmit)="filter()">
       <h4>Cena</h4>
       <mat-form-field>
-        <input matInput type="number" placeholder="Od" [(ngModel)]="filters.priceFrom" name="priceFrom" #priceFrom="ngModel">
+        <input matInput appOnlyNumber="true" placeholder="Od" [(ngModel)]="filters.priceFrom" name="priceFrom" #priceFrom="ngModel">zł
       </mat-form-field>
       <mat-form-field>
-        <input matInput type="number" placeholder="Do" [(ngModel)]="filters.priceTo" name="priceTo" #priceTo="ngModel">
+        <input matInput appOnlyNumber="true" placeholder="Do" [(ngModel)]="filters.priceTo" name="priceTo" #priceTo="ngModel">zł
       </mat-form-field>
       <h4 class="mt-3">Marka</h4>
       <mat-form-field class="full-width">
@@ -34,7 +33,7 @@
         </mat-select>
       </mat-form-field>
       <div class="row">
-        <button mat-raised-button type="submit">Filtruj</button>
+        <button mat-raised-button type="submit">Szukaj</button>
       </div>
     </form>
   </mat-card-content>

@@ -26,4 +26,10 @@ export class NavbarComponent implements OnInit {
     this.shoesService.searchByPhrase(this.searchText);
   }
 
+  searchByGender(gender: string) {
+    setTimeout(() => {
+      this.shoesService.searchByPhrase(gender);
+    });
+  }
+
 }

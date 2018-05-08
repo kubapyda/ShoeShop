@@ -75,7 +75,7 @@ public class ShoeResource {
         return ResponseEntity.ok().build();
     }
 
-    @RequestMapping(value = "{variantId}/picture", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping(value = "{variantId}/picture", method = RequestMethod.GET, produces = MediaType.IMAGE_PNG_VALUE)
     public ResponseEntity<Resource> getPicture(@PathVariable Long variantId) {
         Resource image = shoeService.getImage(variantId);
         return ResponseEntity.ok(image);

@@ -1,4 +1,12 @@
 .container {
+  .shoe-image {
+    display: inline-block;
+    width: 700px;
+    height: 450px;
+    img {
+      height: 450px;
+    }
+  }
   .shoes-information {
     width: 350px;
     vertical-align: top;

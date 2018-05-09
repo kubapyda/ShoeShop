@@ -1,3 +1,5 @@
+import 'rxjs/add/operator/toPromise';
+
 import { Filters } from './../objects/filters';
 import { Global } from './global.servie';
 import { HttpClient } from "@angular/common/http";
@@ -13,9 +15,9 @@ export class ShoesService {
     this.url = `${global.apiAddress}/shoes`;
   }
 
-  findShoes() {
+  findShoes(page: number, size: number) {
     this.global.loaderTrue();
-    this.http.get(`${this.url}/find`).subscribe(data => {
+    this.http.get(`${this.url}/find?page=${page}&size=${size}`).subscribe(data => {
       this.shoes = data;
       this.global.loaderFalse();
     });
@@ -26,7 +28,7 @@ export class ShoesService {
   }
 
   addShoes(shoes: Shoes) {
-    return this.http.post(`${this.url}/add`, shoes);
+    return this.http.post(`${this.url}/add`, shoes).toPromise();
   }
 
   filterShoes(filters: Filters) {

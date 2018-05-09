@@ -18,14 +18,15 @@ export class ShoesDetailComponent implements OnInit {
   variants: Variant;
   gender: Array<{ value: string, viewValue: string }>;
   id: number;
+  variantId: number;
   selectedSize: number = -1;
   toShoppingCart: { variantId: number, size: number, quantity: number } = { variantId: null, size: null, quantity: 1 };
 
   constructor(
+    public global: Global,
     private shoesService: ShoesService,
     private router: ActivatedRoute,
     private order: OrderService,
-    private global: Global,
     private route: Router
   ) { }
 
@@ -34,13 +35,13 @@ export class ShoesDetailComponent implements OnInit {
   }
 
   getShoesDetail() {
-    const variantId: number = +this.router.snapshot.params['variantId'];
+    this.variantId = +this.router.snapshot.params['variantId'];
     this.id = +this.router.snapshot.params['id'];
     this.global.loaderTrue();
-    this.toShoppingCart.variantId = variantId;
+    this.toShoppingCart.variantId = this.variantId;
     this.shoesService.findShoesById(this.id).subscribe(shoes => {
       this.shoes = shoes;
-      this.variants = this.shoes.variants.find(variant => variant.id === variantId);
+      this.variants = this.shoes.variants.find(variant => variant.id === this.variantId);
       this.global.loaderFalse();
     });
   }
@@ -51,6 +52,7 @@ export class ShoesDetailComponent implements OnInit {
   }
 
   getOtherVariant(variantId: number) {
+    this.variantId = variantId;
     this.variants = this.shoes.variants.find(variant => variant.id === variantId);
     this.selectedSize = -1;
   }

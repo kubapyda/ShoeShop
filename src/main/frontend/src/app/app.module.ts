@@ -1,5 +1,5 @@
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatButtonModule, MatCardModule, MatChipsModule, MatDialogModule, MatIconModule, MatInputModule, MatListModule, MatProgressSpinnerModule, MatSelectModule, MatToolbarModule } from '@angular/material';
+import { MatButtonModule, MatCardModule, MatChipsModule, MatDialogModule, MatIconModule, MatInputModule, MatListModule, MatPaginatorIntl, MatPaginatorModule, MatProgressSpinnerModule, MatSelectModule, MatToolbarModule } from '@angular/material';
 
 import { AddShoesComponent } from './add-shoes/add-shoes.component';
 import { AddVariantComponent } from './add-shoes/add-variant/add-variant.component';
@@ -10,6 +10,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FiltersComponent } from './filters/filters.component';
 import { Global } from './services/global.servie';
 import { HttpClientModule } from '@angular/common/http';
+import { MatPaginatorIntlCro } from './objects/mat-paginator-intl';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NgModule } from '@angular/core';
 import { OnlyNumber } from './directives/only-number.directive';
@@ -22,6 +23,7 @@ import { ShoesListComponent } from './shoes-list/shoes-list.component';
 import { ShoesService } from './services/shoes.service';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
+import { UploadImageService } from './services/upload-image.service';
 
 @NgModule({
   declarations: [
@@ -57,6 +59,7 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
     MatDialogModule,
     MatListModule,
     MatProgressSpinnerModule,
+    MatPaginatorModule,
     AppRoutingModule,
     HttpClientModule,
     ToastModule.forRoot()
@@ -64,7 +67,12 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
   providers: [
     Global,
     ShoesService,
-    OrderService
+    OrderService,
+    UploadImageService,
+    {
+      provide: MatPaginatorIntl,
+      useClass: MatPaginatorIntlCro
+    }
   ],
   bootstrap: [AppComponent]
 })

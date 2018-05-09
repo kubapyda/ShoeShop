@@ -1,7 +1,9 @@
 <div class="container">
   <mat-card class="mt-3">
     <mat-card-content>
-      <img src="../../assets/but.png" alt="but">
+      <div class="shoe-image">
+        <img src="{{ global.apiAddress }}/shoes/{{variantId}}/picture" alt="{{shoes?.model}}" [ngStyle]="{ maxWidth: '600px' }">
+      </div>
       <mat-card class="shoes-information ml-2" [ngStyle]="{height: '436px'}">
         <mat-card-content>
           <h2>

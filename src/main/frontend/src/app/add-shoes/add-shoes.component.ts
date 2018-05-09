@@ -9,6 +9,7 @@ import { MyErrorStateMatcher } from './../objects/my-error-state-matcher';
 import { Shoes } from './shoes';
 import { ShoesService } from './../services/shoes.service';
 import { ToastsManager } from 'ng2-toastr';
+import { UploadImageService } from '../services/upload-image.service';
 import { Variant } from './add-variant/variant';
 
 @Component({
@@ -40,11 +41,13 @@ export class AddShoesComponent implements OnInit {
     ORANGE: 'Pomarańczowy'
   };
 
-  constructor(public dialog: MatDialog,
+  constructor(
+    public dialog: MatDialog,
     public toastr: ToastsManager,
     private vcr: ViewContainerRef,
     private shoesService: ShoesService,
-    private global: Global
+    private global: Global,
+    private uploadImage: UploadImageService
   ) {
     this.toastr.setRootViewContainerRef(vcr);
   }
@@ -77,15 +80,18 @@ export class AddShoesComponent implements OnInit {
     })
   }
 
-  saveShoes(): void {
-    this.global.loaderTrue();
-    this.shoesService.addShoes(this.shoes).subscribe(success => {
+  async saveShoes() {
+    try {
+      this.global.loaderTrue();
+      const success = await this.shoesService.addShoes(this.shoes) as Shoes;
+      await this.uploadImage.saveAllImage(success.variants);
+      this.shoes = new Shoes();
       this.toastr.success('Pomyślnie dodano obuwie', 'Powodzenie!');
       this.global.loaderFalse();
-    }, err => {
+    }
+    catch (e) {
       this.toastr.error('Podczas dodawania obuwia wystąpił błąd', 'Niepowodzenie');
       this.global.loaderFalse();
-    });
+    }
   }
-
 }

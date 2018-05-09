@@ -2,6 +2,7 @@ package pl.shoeshop.shoeshop.resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -40,20 +41,20 @@ public class ShoeResource {
     }
 
     @RequestMapping(value = "find", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<List<ShoeDTO>> getShoes(Pageable pageable) {
-        List<ShoeDTO> shoes = shoeService.getShoes(pageable);
+    public ResponseEntity<Page<ShoeDTO>> getShoes(Pageable pageable) {
+        Page<ShoeDTO> shoes = shoeService.getShoes(pageable);
         return ResponseEntity.ok(shoes);
     }
 
     @RequestMapping(value = "find/{phrase}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<List<ShoeDTO>> getShoes(@PathVariable String phrase, Pageable pageable) {
-        List<ShoeDTO> shoes = shoeService.getShoes(phrase, pageable);
+    public ResponseEntity<Page<ShoeDTO>> getShoes(@PathVariable String phrase, Pageable pageable) {
+        Page<ShoeDTO> shoes = shoeService.getShoes(phrase, pageable);
         return ResponseEntity.ok(shoes);
     }
 
     @RequestMapping(value = "find", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<List<ShoeDTO>> getShoes(@RequestBody ShoeSearchDTO dto, Pageable pageable) {
-        List<ShoeDTO> shoes = shoeService.getShoes(dto, pageable);
+    public ResponseEntity<Page<ShoeDTO>> getShoes(@RequestBody ShoeSearchDTO dto, Pageable pageable) {
+        Page<ShoeDTO> shoes = shoeService.getShoes(dto, pageable);
         return ResponseEntity.ok(shoes);
     }
 

@@ -1,11 +1,11 @@
 package pl.shoeshop.shoeshop.service.impl;
 
 import com.google.common.base.Splitter;
-import com.querydsl.core.Query;
 import com.querydsl.core.types.dsl.BooleanExpression;
-import com.querydsl.jpa.impl.JPAQuery;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import pl.shoeshop.shoeshop.dto.ShoeDTO;
@@ -19,7 +19,6 @@ import pl.shoeshop.shoeshop.repository.ShoeRepository;
 import pl.shoeshop.shoeshop.repository.ShoeVariantRepository;
 import pl.shoeshop.shoeshop.service.ShoeSearchService;
 
-import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -46,12 +45,14 @@ public class ShoeSearchServiceImpl implements ShoeSearchService {
     }
 
     @Override
-    public List<ShoeDTO> getShoes(Pageable pageable) {
-        return mapToDTO(shoeVariantRepository.findAll());
+    public Page<ShoeDTO> getShoes(Pageable pageable) {
+        Page<ShoeVariant> shoeVariants = shoeVariantRepository.findAll(pageable);
+
+        return toDTOPage(pageable, shoeVariants);
     }
 
     @Override
-    public List<ShoeDTO> getShoes(String phrase, Pageable pageable) {
+    public Page<ShoeDTO> getShoes(String phrase, Pageable pageable) {
         QShoe shoe = QShoeVariant.shoeVariant.shoe;
 
         Iterable<String> matchers = Splitter.on(" ").split(phrase);
@@ -66,13 +67,13 @@ public class ShoeSearchServiceImpl implements ShoeSearchService {
                     .or(shoe.shoeType.stringValue().startsWith(matcher));
         }
 
-        List<ShoeVariant> shoeVariants = shoeVariantRepository.findAll(expression, pageable).getContent();
+        Page<ShoeVariant> shoeVariants = shoeVariantRepository.findAll(expression, pageable);
 
-        return mapToDTO(shoeVariants);
+        return toDTOPage(pageable, shoeVariants);
     }
 
     @Override
-    public List<ShoeDTO> getShoes(ShoeSearchDTO dto, Pageable pageable) {
+    public Page<ShoeDTO> getShoes(ShoeSearchDTO dto, Pageable pageable) {
         QShoeVariant variant = QShoeVariant.shoeVariant;
 
         BooleanExpression expression = variant.shoe.id.isNotNull();
@@ -93,9 +94,9 @@ public class ShoeSearchServiceImpl implements ShoeSearchService {
             expression = expression.and(variant.soleColor.in(dto.getSoleColors()));
         }
 
-        List<ShoeVariant> shoeVariants = shoeVariantRepository.findAll(expression, pageable).getContent();
+        Page<ShoeVariant> shoeVariants = shoeVariantRepository.findAll(expression, pageable);
 
-        return mapToDTO(shoeVariants);
+        return toDTOPage(pageable, shoeVariants);
     }
 
     private List<ShoeDTO> mapToDTO(List<ShoeVariant> shoeVariants) {
@@ -103,5 +104,9 @@ public class ShoeSearchServiceImpl implements ShoeSearchService {
                 .map(shoeMapper::toDTO)
                 .distinct()
                 .collect(Collectors.toList());
+    }
+
+    private Page<ShoeDTO> toDTOPage(Pageable pageable, Page<ShoeVariant> shoeVariants) {
+        return new PageImpl<>(mapToDTO(shoeVariants.getContent()), pageable, shoeVariants.getTotalElements());
     }
 }

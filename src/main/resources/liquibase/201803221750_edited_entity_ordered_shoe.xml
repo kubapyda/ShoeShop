@@ -18,4 +18,12 @@
             </column>
         </addColumn>
     </changeSet>
+
+    <changeSet id="201803221750-3" author="niemiecw">
+        <addForeignKeyConstraint constraintName="ordered_shoe_sized_variant"
+                                 baseTableName="ordered_shoe"
+                                 baseColumnNames="sized_shoe_id"
+                                 referencedTableName="sized_shoe"
+                                 referencedColumnNames="id"/>
+    </changeSet>
 </databaseChangeLog>

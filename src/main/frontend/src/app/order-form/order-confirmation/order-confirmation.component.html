@@ -1,0 +1,16 @@
+<div class="container-fluid">
+  <div *ngIf="data.isError">
+    <h3>Błąd przy składaniu zamówienia</h3>
+    <p class="my-5">
+      Podczas składania zamówienia wystąpił problem. Prosimy spróbować ponownie za kilka minut.
+    </p>
+    <button mat-raised-button (click)="orderError()">OK</button>
+  </div>
+  <div *ngIf="!data.isError">
+    <h3>Potwierdzenie złożenia zamówienia</h3>
+    <p class="my-5">
+      Dziękujemy za złożenie zamówienia w naszym sklepie. Wkrótce na podany adres mailowy otrzymasz szczegółowe informacje.
+    </p>
+    <button mat-raised-button (click)="orderConfirmation()">OK</button>
+  </div>
+</div>

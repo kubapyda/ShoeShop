@@ -1,7 +1,6 @@
 package pl.shoeshop.shoeshop.service;
 
 import org.assertj.core.util.Lists;
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import pl.shoeshop.shoeshop.dto.ShoeDTO;
@@ -19,12 +17,9 @@ import pl.shoeshop.shoeshop.entity.Shoe;
 import pl.shoeshop.shoeshop.entity.ShoeVariant;
 import pl.shoeshop.shoeshop.repository.ShoeRepository;
 import pl.shoeshop.shoeshop.type.BrandType;
-import pl.shoeshop.shoeshop.type.GenderType;
 
 import java.math.BigDecimal;
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -59,19 +54,19 @@ public class ShoeServiceTest {
 
         String phrase = "air";
 
-        List<ShoeDTO> shoes = shoeService.getShoes(phrase, pageable);
+        List<ShoeDTO> shoes = shoeService.getShoes(phrase, pageable).getContent();
         Assert.assertEquals(shoe3.getModel(), shoes.get(0).getModel());
         Assert.assertEquals(1, shoes.size());
 
         phrase = "model";
 
-        shoes = shoeService.getShoes(phrase, pageable);
+        shoes = shoeService.getShoes(phrase, pageable).getContent();
         Assert.assertEquals(shoe2.getModel(), shoes.get(0).getModel());
         Assert.assertEquals(1, shoes.size());
 
         phrase = "N"; //H2 distinguish between lower and uppercase letters but MySQL does not
 
-        shoes = shoeService.getShoes(phrase, pageable);
+        shoes = shoeService.getShoes(phrase, pageable).getContent();
         Assert.assertEquals(2, shoes.size());
     }
 
@@ -96,7 +91,7 @@ public class ShoeServiceTest {
         ShoeSearchDTO dto = new ShoeSearchDTO();
         dto.setBrands(Lists.newArrayList(BrandType.NEW_BALANCE, BrandType.NIKE));
 
-        List<ShoeDTO> shoes = shoeService.getShoes(dto, Pageable.unpaged());
+        List<ShoeDTO> shoes = shoeService.getShoes(dto, Pageable.unpaged()).getContent();
 
         Assert.assertEquals(2, shoes.size());
         Assert.assertFalse(shoes.stream().anyMatch(s -> BrandType.ADIDAS.equals(s.getBrand())));
@@ -104,7 +99,7 @@ public class ShoeServiceTest {
         dto.setPriceFrom(BigDecimal.valueOf(200));
         dto.setPriceTo(BigDecimal.valueOf(290));
 
-        shoes = shoeService.getShoes(dto, Pageable.unpaged());
+        shoes = shoeService.getShoes(dto, Pageable.unpaged()).getContent();
 
         Assert.assertEquals(1, shoes.size());
         Assert.assertTrue("some model".equals(shoes.get(0).getModel()));

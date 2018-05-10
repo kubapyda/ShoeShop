@@ -1,5 +1,5 @@
 <mat-card class="shoes-card m-2">
-  <img mat-card-image class="shoes-image" src="{{ data.imagePath }}" alt="{{ data.name }}">
+  <img mat-card-image class="shoes-image" src="{{ global.apiAddress }}/shoes/{{data.variantId}}/picture" alt="{{ data.model }}">
   <mat-card-header>
     <mat-card-title>
       <h2>{{ data.brand }}</h2>

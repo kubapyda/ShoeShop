@@ -1,5 +1,5 @@
 package pl.shoeshop.shoeshop.type;
 
 public enum OrderStatusType {
-    APPROVED, SENT, DELIVERED, CANCELED
+    PENDING, APPROVED, SENT, DELIVERED, CANCELED
 }

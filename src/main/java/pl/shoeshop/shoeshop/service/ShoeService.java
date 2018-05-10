@@ -1,6 +1,7 @@
 package pl.shoeshop.shoeshop.service;
 
 import org.springframework.core.io.Resource;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.multipart.MultipartFile;
 import pl.shoeshop.shoeshop.dto.ShoeDTO;
@@ -15,11 +16,11 @@ public interface ShoeService {
 
     Optional<Shoe> getShoe(Long id);
 
-    List<ShoeDTO> getShoes(Pageable pageable);
+    Page<ShoeDTO> getShoes(Pageable pageable);
 
-    List<ShoeDTO> getShoes(String phrase, Pageable pageable);
+    Page<ShoeDTO> getShoes(String phrase, Pageable pageable);
 
-    List<ShoeDTO> getShoes(ShoeSearchDTO dto, Pageable pageable);
+    Page<ShoeDTO> getShoes(ShoeSearchDTO dto, Pageable pageable);
 
     void addShoe(Shoe shoe);
 

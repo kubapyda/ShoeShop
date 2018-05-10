@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class Global {
+  loader: boolean = false;
   apiAddress: string = 'http://localhost:8080';
 
   colors: Array<{ value: string, viewValue: string }> = [{
@@ -68,4 +69,12 @@ export class Global {
     value: 'SANDALS',
     viewValue: 'Sandały'
   }];
+
+  loaderTrue() {
+    setTimeout(() => this.loader = true);
+  }
+
+  loaderFalse() {
+    setTimeout(() => this.loader = false);
+  }
 }

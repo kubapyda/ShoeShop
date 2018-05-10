@@ -1,0 +1,103 @@
+<div class="container">
+  <mat-card class="mt-3">
+    <mat-card-title>Dane do zamówienia</mat-card-title>
+    <mat-card-content>
+      <form #makeOrderForm="ngForm" (ngSubmit)="makeOrder()" novalidate>
+        <div class="row">
+          <div class="col-12">
+            <label>Imię</label>
+            <mat-form-field class="input-width">
+              <input matInput [formControl]="orderForm.name" [errorStateMatcher]="matcher" [(ngModel)]="order.receiver.name">
+              <mat-error *ngIf="orderForm.name.hasError('required')">
+                To pole jest wymagane
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <label>Nazwisko</label>
+            <mat-form-field class="input-width">
+              <input matInput [formControl]="orderForm.surname" [errorStateMatcher]="matcher" [(ngModel)]="order.receiver.surname">
+              <mat-error *ngIf="orderForm.surname.hasError('required')">
+                To pole jest wymagane
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <label>E-mail</label>
+            <mat-form-field class="input-width">
+              <input matInput [formControl]="orderForm.email" [errorStateMatcher]="matcher" [(ngModel)]="order.receiver.email">
+              <mat-error *ngIf="orderForm.email.hasError('email') && !orderForm.email.hasError('required')">
+                Wprowadź prawidłowy adres email, np. example@gmail.com
+              </mat-error>
+              <mat-error *ngIf="orderForm.email.hasError('required')">
+                To pole jest wymagane
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <label>Miasto</label>
+            <mat-form-field class="input-width">
+              <input matInput [formControl]="orderForm.city" [errorStateMatcher]="matcher" [(ngModel)]="order.receiver.address.city">
+              <mat-error *ngIf="orderForm.city.hasError('required')">
+                To pole jest wymagane
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <label>Kod pocztowy</label>
+            <mat-form-field class="input-width">
+              <input matInput [formControl]="orderForm.postalCode" [errorStateMatcher]="matcher" [(ngModel)]="order.receiver.address.postalCode">
+              <mat-error *ngIf="orderForm.postalCode.hasError('pattern') && !orderForm.postalCode.hasError('required')">
+                Pole musi być w formacie ##-### np. 22-100
+              </mat-error>
+              <mat-error *ngIf="orderForm.postalCode.hasError('required')">
+                To pole jest wymagane
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <label>Ulica</label>
+            <mat-form-field class="input-width">
+              <input matInput [formControl]="orderForm.street" [errorStateMatcher]="matcher" [(ngModel)]="order.receiver.address.street">
+              <mat-error *ngIf="orderForm.street.hasError('required')">
+                To pole jest wymagane
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <label>Numer budynku</label>
+            <mat-form-field class="input-width">
+              <input matInput appOnlyNumber="true" [formControl]="orderForm.flatNumber" [errorStateMatcher]="matcher" [(ngModel)]="order.receiver.address.flatNumber">
+              <mat-error *ngIf="orderForm.flatNumber.hasError('required')">
+                To pole jest wymagane
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <label>Numer lokalu</label>
+            <mat-form-field class="input-width">
+              <input matInput appOnlyNumber="true" [formControl]="orderForm.localNumber" [errorStateMatcher]="matcher" [(ngModel)]="order.receiver.address.localNumber">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row marg-left">
+          <button mat-raised-button type="submit" [disabled]="isButtonDisabled()">Kup</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

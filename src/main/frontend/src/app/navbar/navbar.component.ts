@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import { OrderService } from './../services/order.service';
 import { ShoesService } from './../services/shoes.service';
 
 @Component({
@@ -11,13 +12,24 @@ export class NavbarComponent implements OnInit {
 
   searchText: string;
 
-  constructor(public shoesService: ShoesService) { }
+  constructor(
+    public shoesService: ShoesService,
+    public order: OrderService
+  ) { }
 
   ngOnInit() {
+    this.order.variants = this.order.getProduct();
+    this.order.getTotalPrice();
   }
 
   searchByPhrase() {
     this.shoesService.searchByPhrase(this.searchText);
+  }
+
+  searchByGender(gender: string) {
+    setTimeout(() => {
+      this.shoesService.searchByPhrase(gender);
+    });
   }
 
 }

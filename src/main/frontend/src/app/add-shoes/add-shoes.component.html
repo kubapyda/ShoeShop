@@ -7,11 +7,14 @@
           <div class="col-12">
             <label>Marka</label>
             <mat-form-field class="input-width">
-              <mat-select required [(ngModel)]="shoes.brand" name="brand" #brand="ngModel">
+              <mat-select [(ngModel)]="shoes.brand" name="brand" [formControl]="shoesForm.brand" [errorStateMatcher]="matcher">
                 <mat-option *ngFor="let brand of brands" [value]="brand.value">
                   {{ brand.viewValue }}
                 </mat-option>
               </mat-select>
+              <mat-error *ngIf="shoesForm.brand.hasError('required')">
+                To pole jest wymagane
+              </mat-error>
             </mat-form-field>
           </div>
         </div>
@@ -19,7 +22,10 @@
           <div class="col-12">
             <label>Model</label>
             <mat-form-field class="input-width">
-              <input matInput required [(ngModel)]="shoes.model" name="model" #model="ngModel">
+              <input matInput [formControl]="shoesForm.model" [errorStateMatcher]="matcher" [(ngModel)]="shoes.model">
+              <mat-error *ngIf="shoesForm.model.hasError('required')">
+                To pole jest wymagane
+              </mat-error>
             </mat-form-field>
           </div>
         </div>
@@ -27,7 +33,10 @@
           <div class="col-12">
             <label>Cena</label>
             <mat-form-field class="input-width">
-              <input matInput type="number" required [(ngModel)]="shoes.price" name="price" #price="ngModel">
+              <input matInput appOnlyNumber="true" [formControl]="shoesForm.price" [errorStateMatcher]="matcher" [(ngModel)]="shoes.price">
+              <mat-error *ngIf="shoesForm.price.hasError('required')">
+                To pole jest wymagane
+              </mat-error>
             </mat-form-field>
           </div>
         </div>
@@ -35,11 +44,14 @@
           <div class="col-12">
             <label>Dla płci</label>
             <mat-form-field class="input-width">
-              <mat-select required [(ngModel)]="shoes.gender" name="gender" #gender="ngModel">
+              <mat-select [(ngModel)]="shoes.gender" [formControl]="shoesForm.gender" [errorStateMatcher]="matcher">
                 <mat-option *ngFor="let gender of genders" [value]="gender.value">
                   {{ gender.viewValue }}
                 </mat-option>
               </mat-select>
+              <mat-error *ngIf="shoesForm.gender.hasError('required')">
+                To pole jest wymagane
+              </mat-error>
             </mat-form-field>
           </div>
         </div>
@@ -47,11 +59,14 @@
           <div class="col-12">
             <label>Typ</label>
             <mat-form-field class="input-width">
-              <mat-select required [(ngModel)]="shoes.shoeType" name="shoeType" #shoeType="ngModel">
+              <mat-select [(ngModel)]="shoes.shoeType" [formControl]="shoesForm.shoeType" [errorStateMatcher]="matcher">
                 <mat-option *ngFor="let type of types" [value]="type.value">
                   {{ type.viewValue }}
                 </mat-option>
               </mat-select>
+              <mat-error *ngIf="shoesForm.shoeType.hasError('required')">
+                To pole jest wymagane
+              </mat-error>
             </mat-form-field>
           </div>
         </div>
@@ -59,7 +74,10 @@
           <div class="col-12">
             <label>Opis</label>
             <mat-form-field class="input-width">
-              <input matInput required [(ngModel)]="shoes.description" name="description" #description="ngModel">
+              <input matInput [formControl]="shoesForm.description" [errorStateMatcher]="matcher" [(ngModel)]="shoes.description">
+              <mat-error *ngIf="shoesForm.description.hasError('required')">
+                To pole jest wymagane
+              </mat-error>
             </mat-form-field>
           </div>
         </div>
@@ -76,7 +94,7 @@
           </div>
         </div>
         <div class="row marg-left ">
-          <button mat-raised-button type="submit" [disabled]="!addShoesForm.valid || !shoes.variants.length">Zapisz</button>
+          <button mat-raised-button type="submit" [disabled]="isButtonDisabled() || !shoes.variants.length">Zapisz</button>
         </div>
       </form>
     </mat-card-content>

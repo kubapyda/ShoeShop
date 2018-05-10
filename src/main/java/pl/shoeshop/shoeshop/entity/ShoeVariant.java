@@ -7,6 +7,7 @@ import org.hibernate.annotations.FetchMode;
 import pl.shoeshop.shoeshop.type.ColorType;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 import java.util.List;
 
@@ -37,5 +38,6 @@ public class ShoeVariant {
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "shoeVariant")
     @Fetch(FetchMode.SUBSELECT)
+    @NotEmpty
     private List<SizedShoe> sizedShoes;
 }

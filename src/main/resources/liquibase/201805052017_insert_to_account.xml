@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="201805052017-1" author="niemiecw">
+        <insert tableName="account">
+            <column name="id" autoIncrement="true"/>
+            <column name="login" value="admin"/>
+            <column name="password" value="$2a$10$Jh/gEH5LikktRD5/WoKd8Oz7akru3qnsx6.JW7OTBhLaDWmrGYEHG"/>
+            <column name="role" value="ADMIN"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

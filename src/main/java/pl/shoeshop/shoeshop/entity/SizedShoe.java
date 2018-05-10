@@ -10,6 +10,7 @@ import pl.shoeshop.shoeshop.type.GenderType;
 import pl.shoeshop.shoeshop.type.ShoeType;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -29,9 +30,11 @@ public class SizedShoe {
     private Long id;
 
     @Column
+    @Min(0)
     private Integer size;
 
     @Column
+    @Min(1)
     private Integer quantity;
 
     @ManyToOne
@@ -39,5 +42,6 @@ public class SizedShoe {
     private ShoeVariant shoeVariant;
 
     @OneToMany(mappedBy = "sizedShoe")
+    @JsonIgnore
     private List<OrderedShoe> orderedShoes;
 }

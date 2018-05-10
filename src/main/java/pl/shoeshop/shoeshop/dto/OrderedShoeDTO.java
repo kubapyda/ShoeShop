@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 public class OrderedShoeDTO {
 
     private String brand;
+    private String model;
     private String shankColor;
     private String soleColor;
     private Integer size;
@@ -17,6 +18,7 @@ public class OrderedShoeDTO {
 
     public OrderedShoeDTO(OrderedShoeProjection projection) {
         brand = projection.getBrand();
+        model = projection.getModel();
         shankColor = projection.getShankColor();
         soleColor = projection.getSoleColor();
         size = projection.getSize();

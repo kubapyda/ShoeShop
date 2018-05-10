@@ -34,8 +34,8 @@
             <thead>
                 <tr>
                     <th>Marka</th>
-                    <th>Kolor podeszwy</th>
-                    <th>Kolor cholewki</th>
+                    <th>Model</th>
+                    <th>Kolor cholewki/podeszwy</th>
                     <th>Rozmiar</th>
                     <th>Cena</th>
                     <th>Ilość</th>
@@ -45,8 +45,8 @@
             #foreach($shoe in $orderedShoes)
                 <tr>
                     <td>${shoe.brand}</td>
-                    <td>${shoe.soleColor}</td>
-                    <td>${shoe.shankColor}</td>
+                    <td>${shoe.model}</td>
+                    <td>${shoe.shankColor}/${shoe.soleColor}</td>
                     <td>${shoe.size}</td>
                     <td>${shoe.price}</td>
                     <td>${shoe.quantity}</td>
@@ -55,7 +55,7 @@
             </tbody>
         </table>
     </div>
-    <p>Całkowity koszt zamówienia: ${totalPrice}</p>
+    <p>Całkowity koszt zamówienia: ${totalPrice} zł</p>
     <br>
     <p>Z poważaniem zespół <strong>ShoeShop</strong></p>
 </body>

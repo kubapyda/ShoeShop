@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 public interface OrderedShoeProjection {
 
     String getBrand();
+    String getModel();
     String getShankColor();
     String getSoleColor();
     Integer getSize();

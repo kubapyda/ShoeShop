@@ -12,6 +12,7 @@ public interface OrderedShoeRepository extends JpaRepository<OrderedShoe, Long> 
 
     @Query(nativeQuery = true, value = "SELECT " +
             "s.brand, " +
+            "s.model, " +
             "sv.shank_color as ShankColor, " +
             "sv.sole_color as SoleColor, " +
             "ss.size, " +

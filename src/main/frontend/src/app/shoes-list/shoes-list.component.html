@@ -6,7 +6,7 @@
     <mat-card>
       <mat-card-content>
         <app-shoes *ngFor="let shoe of shoesService.shoes" [data]="shoe" [routerLink]="['shoes', shoe.id, 'variant', shoe.variantId]"></app-shoes>
-        <mat-paginator [length]="29" [pageSize]="size" (page)="changePage($event)"></mat-paginator>
+        <mat-paginator [length]="shoesService.totalItems" [pageSize]="shoesService.size" (page)="changePage($event)"></mat-paginator>
       </mat-card-content>
     </mat-card>
   </div>

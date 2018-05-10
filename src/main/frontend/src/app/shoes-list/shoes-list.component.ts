@@ -10,17 +10,16 @@ import { ShoesService } from '../services/shoes.service';
 export class ShoesListComponent implements OnInit {
 
   page: number = 0;
-  size: number = 8;
 
   constructor(public shoesService: ShoesService) { }
 
   ngOnInit() {
-    this.shoesService.findShoes(this.page, this.size);
+    this.shoesService.findShoes(this.page);
   }
 
   changePage(event) {
     this.page = event.pageIndex;
-    this.shoesService.findShoes(this.page, this.size);
+    this.shoesService.findShoes(this.page);
   }
 
 }

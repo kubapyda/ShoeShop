@@ -10,15 +10,18 @@ import { Shoes } from './../add-shoes/shoes';
 export class ShoesService {
   private url: string;
   public shoes: any;
+  public totalItems: number;
+  public size: number = 8;
 
   constructor(private http: HttpClient, private global: Global) {
     this.url = `${global.apiAddress}/shoes`;
   }
 
-  findShoes(page: number, size: number) {
+  findShoes(page: number) {
     this.global.loaderTrue();
-    this.http.get(`${this.url}/find?page=${page}&size=${size}`).subscribe(data => {
-      this.shoes = data;
+    this.http.get(`${this.url}/find?page=${page}&size=${this.size}`).subscribe((data: any) => {
+      this.shoes = data.content;
+      this.totalItems = data.totalElements;
       this.global.loaderFalse();
     });
   }
@@ -31,17 +34,19 @@ export class ShoesService {
     return this.http.post(`${this.url}/add`, shoes).toPromise();
   }
 
-  filterShoes(filters: Filters) {
+  filterShoes(filters: Filters, page: number) {
     this.global.loaderTrue();
-    this.http.post(`${this.url}/find`, filters).subscribe(data => {
-      this.shoes = data;
+    this.http.post(`${this.url}/find?page=0&size=${this.size}`, filters).subscribe((data: any) => {
+      this.shoes = data.content;
+      console.log(data);
+      this.totalItems = data.totalElements;
       this.global.loaderFalse();
     });
   }
 
   searchByPhrase(search: string) {
     this.global.loaderTrue();
-    this.http.get(`${this.url}/find/${search}`).subscribe(data => {
+    this.http.get(`${this.url}/find/${search}`).subscribe((data: any) => {
       this.shoes = data;
       this.global.loaderFalse();
     });

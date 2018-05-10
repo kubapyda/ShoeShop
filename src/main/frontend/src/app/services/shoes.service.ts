@@ -38,9 +38,9 @@ export class ShoesService {
   }
 
   addShoes(shoes: Shoes) {
-    const headers = new HttpHeaders({ 'Authorization': this.loginService.getToken() });
-    return this.http.post(`${this.url}/add`, shoes, { headers: headers }).toPromise();
+    return this.http.post(`${this.url}/add`, shoes).toPromise();
   }
+
 
   filterShoes(filters: Filters, page: number) {
     this.global.loaderTrue();
@@ -53,8 +53,9 @@ export class ShoesService {
 
   searchByPhrase(search: string) {
     this.global.loaderTrue();
-    this.http.get(`${this.url}/find/${search}`).subscribe((data: any) => {
-      this.shoes = data;
+    this.http.get(`${this.url}/find/${search}?page=0&size=${this.size}`).subscribe((data: any) => {
+      this.shoes = data.content;
+      this.totalItems = data.totalElements;
       this.global.loaderFalse();
     });
   }

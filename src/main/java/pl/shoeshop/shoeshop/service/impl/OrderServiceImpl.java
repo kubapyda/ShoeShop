@@ -1,6 +1,7 @@
 package pl.shoeshop.shoeshop.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import pl.shoeshop.shoeshop.dto.OrderDTO;
@@ -8,11 +9,13 @@ import pl.shoeshop.shoeshop.dto.VariantDTO;
 import pl.shoeshop.shoeshop.entity.*;
 import pl.shoeshop.shoeshop.repository.OrderRepository;
 import pl.shoeshop.shoeshop.repository.SizedShoeRepository;
+import pl.shoeshop.shoeshop.service.MailService;
 import pl.shoeshop.shoeshop.service.OrderService;
 import pl.shoeshop.shoeshop.service.ReceiverService;
 import pl.shoeshop.shoeshop.service.ShoeVariantService;
 import pl.shoeshop.shoeshop.type.OrderStatusType;
 
+import javax.mail.MessagingException;
 import javax.transaction.Transactional;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
@@ -25,20 +28,23 @@ public class OrderServiceImpl implements OrderService {
     private ReceiverService receiverService;
     private ShoeVariantService shoeVariantService;
     private SizedShoeRepository sizedShoeRepository;
+    private MailService mailService;
 
     @Autowired
     public OrderServiceImpl(OrderRepository orderRepository,
                             ReceiverService receiverService,
                             ShoeVariantService shoeVariantService,
-                            SizedShoeRepository sizedShoeRepository) {
+                            SizedShoeRepository sizedShoeRepository,
+                            MailService mailService) {
         this.orderRepository = orderRepository;
         this.receiverService = receiverService;
         this.shoeVariantService = shoeVariantService;
         this.sizedShoeRepository = sizedShoeRepository;
+        this.mailService = mailService;
     }
 
     @Override
-    public List<Order> getOrders(OrderStatusType status, Pageable pageable) {
+    public Page<Order> getOrders(OrderStatusType status, Pageable pageable) {
         return null;
     }
 
@@ -48,7 +54,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     @Transactional
-    public void order(OrderDTO orderDTO) {
+    public void order(OrderDTO orderDTO) throws MessagingException {
         Receiver receiver = receiverService.getOrCreate(orderDTO.getReceiver());
         Iterable<SizedShoe> sizedShoes = shoeVariantService.getSizedShoes(orderDTO.getVariants());
         List<OrderedShoe> orderedShoes = new ArrayList<>();
@@ -66,14 +72,15 @@ public class OrderServiceImpl implements OrderService {
         }
 
         order.setOrderedShoes(orderedShoes);
-        orderRepository.saveAndFlush(order);
+        order = orderRepository.saveAndFlush(order);
+        mailService.sendConfirmation(order);
     }
 
     private Order prepareOrder(Receiver receiver) {
         return Order.builder()
                 .receiver(receiver)
                 .applicationDate(ZonedDateTime.now())
-                .orderStatus(OrderStatusType.APPROVED)
+                .orderStatus(OrderStatusType.PENDING)
                 .build();
     }
 

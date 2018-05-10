@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import pl.shoeshop.shoeshop.dto.VariantDTO;
 import pl.shoeshop.shoeshop.entity.QSizedShoe;
 import pl.shoeshop.shoeshop.entity.SizedShoe;
-import pl.shoeshop.shoeshop.projection.SizeDictionary;
+import pl.shoeshop.shoeshop.projection.SizeDictionaryProjection;
 import pl.shoeshop.shoeshop.repository.ShoeVariantRepository;
 import pl.shoeshop.shoeshop.repository.SizedShoeRepository;
 import pl.shoeshop.shoeshop.service.ShoeVariantService;
@@ -27,7 +27,7 @@ public class ShoeVariantServiceImpl implements ShoeVariantService {
     }
 
     @Override
-    public List<SizeDictionary> getSizes(Long variantId) {
+    public List<SizeDictionaryProjection> getSizes(Long variantId) {
         return shoeVariantRepository.getAvailabilityPerSize(variantId);
     }
 

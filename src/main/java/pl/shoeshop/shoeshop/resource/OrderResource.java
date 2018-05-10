@@ -10,6 +10,7 @@ import pl.shoeshop.shoeshop.entity.Order;
 import pl.shoeshop.shoeshop.service.OrderService;
 import pl.shoeshop.shoeshop.type.OrderStatusType;
 
+import javax.mail.MessagingException;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -35,7 +36,7 @@ public class OrderResource {
     }
 
     @RequestMapping(value = "order", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<?> order(@Valid @RequestBody OrderDTO order) {
+    public ResponseEntity<?> order(@Valid @RequestBody OrderDTO order) throws MessagingException {
         orderService.order(order);
         return ResponseEntity.ok().build();
     }

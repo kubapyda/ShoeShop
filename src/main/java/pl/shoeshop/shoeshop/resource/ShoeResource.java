@@ -11,7 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import pl.shoeshop.shoeshop.dto.ShoeDTO;
 import pl.shoeshop.shoeshop.dto.ShoeSearchDTO;
 import pl.shoeshop.shoeshop.entity.Shoe;
-import pl.shoeshop.shoeshop.projection.SizeDictionary;
+import pl.shoeshop.shoeshop.projection.SizeDictionaryProjection;
 import pl.shoeshop.shoeshop.service.ShoeService;
 import pl.shoeshop.shoeshop.service.ShoeVariantService;
 
@@ -89,8 +89,8 @@ public class ShoeResource {
     }
 
     @RequestMapping(value = "{variantId}/sizes", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<List<SizeDictionary>> getSizes(@PathVariable("variantId") Long variantId) {
-        List<SizeDictionary> result = shoeVariantService.getSizes(variantId);
+    public ResponseEntity<List<SizeDictionaryProjection>> getSizes(@PathVariable("variantId") Long variantId) {
+        List<SizeDictionaryProjection> result = shoeVariantService.getSizes(variantId);
         return ResponseEntity.ok(result);
     }
 }

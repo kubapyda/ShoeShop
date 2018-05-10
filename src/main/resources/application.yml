@@ -15,6 +15,15 @@ spring:
     username: root
     password: admin
 
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: shoeshop.notifications
+    password: shoeshopmailing123
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.starttls.enable: true
+
   jpa:
     show-sql: true
 

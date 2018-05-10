@@ -5,14 +5,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.repository.query.Param;
 import pl.shoeshop.shoeshop.entity.ShoeVariant;
-import pl.shoeshop.shoeshop.projection.SizeDictionary;
+import pl.shoeshop.shoeshop.projection.SizeDictionaryProjection;
 
 import java.util.List;
 
 public interface ShoeVariantRepository extends JpaRepository<ShoeVariant, Long>, QuerydslPredicateExecutor<ShoeVariant> {
 
-    @Query(nativeQuery = true, value =
-            "SELECT " +
+    @Query(nativeQuery = true, value = "SELECT " +
             "  size, " +
             "  CASE " +
             "  WHEN actual_quantity <= 0 " +
@@ -29,5 +28,5 @@ public interface ShoeVariantRepository extends JpaRepository<ShoeVariant, Long>,
             "        LEFT JOIN ordered_shoe os ON ss.id = os.sized_shoe_id " +
             "      WHERE sv.id = :id " +
             "      GROUP BY ss.size) AS quantity_per_size")
-    List<SizeDictionary> getAvailabilityPerSize(@Param("id") Long id);
+    List<SizeDictionaryProjection> getAvailabilityPerSize(@Param("id") Long id);
 }

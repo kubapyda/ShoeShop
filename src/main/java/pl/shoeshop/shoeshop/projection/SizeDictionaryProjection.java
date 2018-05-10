@@ -1,6 +1,6 @@
 package pl.shoeshop.shoeshop.projection;
 
-public interface SizeDictionary {
+public interface SizeDictionaryProjection {
     Integer getSize();
     String getAvailability();
 }

@@ -37,6 +37,7 @@ public class AccountResource {
 
             return ResponseEntity.ok()
                     .header(AUTHORIZATION, BEARER + token)
+                    .header("Access-Control-Expose-Headers", "Authorization")
                     .build();
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)

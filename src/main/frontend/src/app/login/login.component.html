@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 text-center mb-4">
+      <h3>Zaloguj się</h3>
+    </div>
+    <div class="col-12 text-right">
+      <form class="mb-4" autocomplete="off">
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Nazwa użytkownika" [(ngModel)]="login.login" name="username" required>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Hasło" [(ngModel)]="login.password" type="password" name="password" autocomplete="new-password"
+            required>
+        </mat-form-field>
+      </form>
+      <button mat-raised-button (click)="signIn()" class="login-btn">Zaloguj</button>
+    </div>
+  </div>
+</div>

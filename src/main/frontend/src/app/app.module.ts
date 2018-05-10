@@ -5,11 +5,14 @@ import { AddShoesComponent } from './add-shoes/add-shoes.component';
 import { AddVariantComponent } from './add-shoes/add-variant/add-variant.component';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { AuthGuard } from './services/auth-guard.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { FiltersComponent } from './filters/filters.component';
 import { Global } from './services/global.servie';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './login/login.component';
+import { LoginService } from './services/login.service';
 import { MatPaginatorIntlCro } from './objects/mat-paginator-intl';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NgModule } from '@angular/core';
@@ -38,11 +41,13 @@ import { UploadImageService } from './services/upload-image.service';
     ShoppingCartComponent,
     OnlyNumber,
     OrderFormComponent,
-    OrderConfirmationComponent
+    OrderConfirmationComponent,
+    LoginComponent
   ],
   entryComponents: [
     AddVariantComponent,
-    OrderConfirmationComponent
+    OrderConfirmationComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -68,6 +73,8 @@ import { UploadImageService } from './services/upload-image.service';
     Global,
     ShoesService,
     OrderService,
+    LoginService,
+    AuthGuard,
     UploadImageService,
     {
       provide: MatPaginatorIntl,

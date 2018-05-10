@@ -26,7 +26,7 @@ export class FiltersComponent implements OnInit {
   }
 
   filter() {
-    this.shoesService.filterShoes(this.filters);
+    this.shoesService.filterShoes(this.filters, 0);
   }
 
 }

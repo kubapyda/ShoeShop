@@ -1,6 +1,8 @@
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+
 import { Global } from './global.servie';
-import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { LoginService } from './login.service';
 import { ToastsManager } from 'ng2-toastr';
 import { Variant } from './../add-shoes/add-variant/variant';
 
@@ -12,6 +14,7 @@ export class UploadImageService {
   constructor(
     private http: HttpClient,
     private global: Global,
+    private loginService: LoginService,
     private toastr: ToastsManager
   ) {
     this.url = `${global.apiAddress}/shoes`;
@@ -24,7 +27,8 @@ export class UploadImageService {
   }
 
   saveSingleImage(id: number, variantImage: FormData) {
-    return this.http.post(`${this.url}/${id}/picture`, variantImage).subscribe(success => { }, err => {
+    const headers = new HttpHeaders({ 'Authorization': this.loginService.getToken() });
+    return this.http.post(`${this.url}/${id}/picture`, variantImage, { headers: headers }).subscribe(success => { }, err => {
       this.toastr.error(`Podczas dodawania zdjęcia do wariantu o identyfikatorze ${id} wystąpił problem`);
     });
   }

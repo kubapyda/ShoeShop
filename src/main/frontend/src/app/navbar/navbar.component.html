@@ -19,7 +19,9 @@
       #searchInput="ngModel">
     <button mat-raised-button class="my-2 my-sm-0" type="submit">Szukaj</button>
   </form>
-  <button mat-raised-button class="my-2 my-sm-0 mx-1" [routerLink]="['add']">Dodaj</button>
+  <button mat-raised-button class="my-2 my-sm-0 mx-1" (click)="openLoginDialog()" *ngIf="!loginService.getToken()">Zaloguj</button>
+  <button mat-raised-button class="my-2 my-sm-0 mx-1" [routerLink]="['add']" *ngIf="loginService.getToken()">Dodaj</button>
+  <button mat-raised-button class="my-2 my-sm-0 mx-1" (click)="signOut()" *ngIf="loginService.getToken()">Wyloguj</button>
   <button mat-raised-button class="my-2 my-sm-0 mx-1 shopping-cart-button" [routerLink]="['shopping-cart']">
     <i class="fa fa-shopping-cart shopping-cart-icon"></i> ({{order.variants.length}}) - {{order.totalPrice}}ZŁ
   </button>

@@ -77,7 +77,7 @@ export class AddShoesComponent implements OnInit {
         this.shoes.variants.push(result);
         this.global.loaderFalse();
       }
-    })
+    });
   }
 
   async saveShoes() {

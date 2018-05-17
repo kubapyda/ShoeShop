@@ -45,7 +45,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**").allowedOrigins("http://localhost:4200", "http://ng-shoeshop.s3-website.eu-central-1.amazonaws.com");
+                registry.addMapping("/**")
+                        .allowedOrigins(
+                                "http://localhost:4200",
+                                "http://ng-shoeshop.s3-website.eu-central-1.amazonaws.com",
+                                "http://ng-shoeshop2.s3-website.us-east-2.amazonaws.com"
+                        );
             }
         };
     }

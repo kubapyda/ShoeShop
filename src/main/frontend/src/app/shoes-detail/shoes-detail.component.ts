@@ -59,6 +59,7 @@ export class ShoesDetailComponent implements OnInit {
 
   addToShopingCart() {
     this.order.addProduct({
+      image: `${this.global.apiAddress}/shoes/${this.variantId}/picture`,
       variantId: this.toShoppingCart.variantId,
       size: this.toShoppingCart.size,
       quantity: 1,

@@ -4,7 +4,7 @@
     <mat-list class="mt-4" *ngIf="order.variants.length">
       <mat-list-item *ngFor="let product of order.variants; let idx = index" class="product">
         <mat-icon mat-list-icon class="product-image">
-          <img src="../../assets/but.png" alt="but" width="85" height="85">
+          <img src="{{product.image}}" alt="but" width="85" height="85">
         </mat-icon>
         <h4 mat-line>{{product.brand}}</h4>
         <p mat-line>{{product.model}}</p>

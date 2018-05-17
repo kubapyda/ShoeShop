@@ -23,7 +23,7 @@ export class OrderService {
     return this.http.post(`${this.url}/order`, order);
   }
 
-  addProduct(product: { variantId: number, size: number, quantity: number, brand: string, model: string, price: number }) {
+  addProduct(product: { image: string, variantId: number, size: number, quantity: number, brand: string, model: string, price: number }) {
     this.variants = JSON.parse(localStorage.getItem(this.localStorageItem));
     const shoppingCartIndex = this.variants.findIndex(variant => variant.variantId === product.variantId && variant.size === product.size);
     shoppingCartIndex === -1 ? this.variants.push(product) : this.variants[shoppingCartIndex].quantity++;

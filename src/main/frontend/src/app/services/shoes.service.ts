@@ -11,7 +11,6 @@ import { Shoes } from './../add-shoes/shoes';
 @Injectable()
 export class ShoesService {
   private url: string;
-  private headers: HttpHeaders;
   public shoes: any;
   public totalItems: number;
   public size: number = 8;

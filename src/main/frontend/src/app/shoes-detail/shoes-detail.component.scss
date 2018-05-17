@@ -1,3 +1,5 @@
+@import "../../styles.scss";
+
 .container {
   .shoe-image {
     display: inline-block;
@@ -12,6 +14,9 @@
     vertical-align: top;
     h2 {
       text-align: center;
+      span {
+        background-color: $button-color;
+      }
     }
     display: inline-block;
     .color-variants {
@@ -24,7 +29,7 @@
     }
     .add-to-cart {
       width: 100%;
-      background-color: #33a94e;
+      background-color: $button-color;
       color: white;
       font-weight: bold;
       font-size: 20px;

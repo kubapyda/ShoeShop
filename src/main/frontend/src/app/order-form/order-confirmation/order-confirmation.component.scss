@@ -1,7 +1,9 @@
+@import "../../../styles.scss";
+
 .container-fluid {
   text-align: center;
   button {
-    background-color: #33a94e;
+    background-color: $button-color;
     color: #fff;
   }
 }

@@ -10,6 +10,7 @@
 $primary: mat-palette($mat-lime, 500);
 $accent:  mat-palette($mat-lime, 500, A200, A400);
 $warn:    mat-palette($mat-red, 500);
+$button-color: #48a4ac;
 
 $theme: mat-light-theme($primary, $accent, $warn);
 
@@ -18,6 +19,7 @@ $theme: mat-light-theme($primary, $accent, $warn);
 body {
     font-family: $mat-font-family;
     font-weight: normal;
+    background-color: #f9f9f9;
 }
 
 h1, h2, h3, h4 {
@@ -28,6 +30,13 @@ h1, h2, h3, h4 {
   margin: 0 auto;
   margin-top: calc(50vh - 75px);
   svg circle {
-    stroke: #33a94e;
+    stroke: $button-color;
+  }
+}
+
+.red-star {
+  &:after {
+    content: '*';
+    color: red;
   }
 }

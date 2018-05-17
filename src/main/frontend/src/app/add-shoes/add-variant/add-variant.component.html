@@ -3,13 +3,13 @@
   <form #addVariantForm="ngForm" (ngSubmit)="saveVariant()" novalidate>
     <div class="row mt-3">
       <div class="col-12">
-        <label>Zdjęcie obuwia</label>
+        <label class="red-star">Zdjęcie obuwia</label>
         <input type="file" (change)="selectImage($event)">
       </div>
     </div>
     <div class="row">
       <div class="col-12">
-        <label>Kolor obuwia</label>
+        <label class="red-star">Kolor obuwia</label>
         <mat-form-field class="input-width">
           <mat-select [(ngModel)]="variants.shankColor" [formControl]="variantsForm.shankColor" [errorStateMatcher]="matcher">
             <mat-option *ngFor="let color of colors" [value]="color.value">
@@ -24,7 +24,7 @@
     </div>
     <div class="row">
       <div class="col-12">
-        <label>Kolor podeszwy</label>
+        <label class="red-star">Kolor podeszwy</label>
         <mat-form-field class="input-width">
           <mat-select [(ngModel)]="variants.soleColor" [formControl]="variantsForm.soleColor" [errorStateMatcher]="matcher">
             <mat-option *ngFor="let color of colors" [value]="color.value">
@@ -40,8 +40,12 @@
     <mat-card>
       <mat-card-content>
         <div class="row">
-          <div class="col-5">Rozmiar</div>
-          <div class="col-5">Liczba sztuk</div>
+          <div class="col-5">
+            <span class="red-star">Rozmiar</span>
+          </div>
+          <div class="col-5">
+            <span class="red-star">Liczba sztuk</span>
+          </div>
           <div class="col-2"></div>
         </div>
         <div class="row" *ngFor="let variant of variants.sizedShoes; let i = index">
@@ -68,7 +72,7 @@
     </mat-card>
     <div class="row mt-3 text-right">
       <div class="col-12">
-        <button mat-raised-button color="primary" type="submit" [disabled]="!addVariantForm.valid || !selectedImage">Zapisz</button>
+        <button mat-raised-button type="submit" class="add-variant-btn" [disabled]="!addVariantForm.valid || !selectedImage">Zapisz</button>
       </div>
     </div>
   </form>

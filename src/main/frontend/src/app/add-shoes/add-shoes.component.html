@@ -5,7 +5,7 @@
       <form #addShoesForm="ngForm" (ngSubmit)="saveShoes()" novalidate>
         <div class="row">
           <div class="col-12">
-            <label>Marka</label>
+            <label class="red-star">Marka</label>
             <mat-form-field class="input-width">
               <mat-select [(ngModel)]="shoes.brand" name="brand" [formControl]="shoesForm.brand" [errorStateMatcher]="matcher">
                 <mat-option *ngFor="let brand of brands" [value]="brand.value">
@@ -20,7 +20,7 @@
         </div>
         <div class="row">
           <div class="col-12">
-            <label>Model</label>
+            <label class="red-star">Model</label>
             <mat-form-field class="input-width">
               <input matInput [formControl]="shoesForm.model" [errorStateMatcher]="matcher" [(ngModel)]="shoes.model">
               <mat-error *ngIf="shoesForm.model.hasError('required')">
@@ -31,7 +31,7 @@
         </div>
         <div class="row">
           <div class="col-12">
-            <label>Cena</label>
+            <label class="red-star">Cena</label>
             <mat-form-field class="input-width">
               <input matInput appOnlyNumber="true" [formControl]="shoesForm.price" [errorStateMatcher]="matcher" [(ngModel)]="shoes.price">
               <mat-error *ngIf="shoesForm.price.hasError('required')">
@@ -42,7 +42,7 @@
         </div>
         <div class="row">
           <div class="col-12">
-            <label>Dla płci</label>
+            <label class="red-star">Dla płci</label>
             <mat-form-field class="input-width">
               <mat-select [(ngModel)]="shoes.gender" [formControl]="shoesForm.gender" [errorStateMatcher]="matcher">
                 <mat-option *ngFor="let gender of genders" [value]="gender.value">
@@ -57,7 +57,7 @@
         </div>
         <div class="row">
           <div class="col-12">
-            <label>Typ</label>
+            <label class="red-star">Typ</label>
             <mat-form-field class="input-width">
               <mat-select [(ngModel)]="shoes.shoeType" [formControl]="shoesForm.shoeType" [errorStateMatcher]="matcher">
                 <mat-option *ngFor="let type of types" [value]="type.value">
@@ -72,7 +72,7 @@
         </div>
         <div class="row">
           <div class="col-12">
-            <label>Opis</label>
+            <label class="red-star">Opis</label>
             <mat-form-field class="input-width">
               <input matInput [formControl]="shoesForm.description" [errorStateMatcher]="matcher" [(ngModel)]="shoes.description">
               <mat-error *ngIf="shoesForm.description.hasError('required')">
@@ -97,6 +97,9 @@
           <button mat-raised-button type="submit" [disabled]="isButtonDisabled() || !shoes.variants.length">Zapisz</button>
         </div>
       </form>
+      <div class="mt-3">
+        <span class="red-star"></span> Pola oznaczone gwiazdką muszą zostać wypełnione.
+      </div>
     </mat-card-content>
   </mat-card>
 </div>

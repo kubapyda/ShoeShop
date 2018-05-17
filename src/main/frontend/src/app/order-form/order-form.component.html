@@ -5,7 +5,7 @@
       <form #makeOrderForm="ngForm" (ngSubmit)="makeOrder()" novalidate>
         <div class="row">
           <div class="col-12">
-            <label>Imię</label>
+            <label class="red-star">Imię</label>
             <mat-form-field class="input-width">
               <input matInput [formControl]="orderForm.name" [errorStateMatcher]="matcher" [(ngModel)]="order.receiver.name">
               <mat-error *ngIf="orderForm.name.hasError('required')">
@@ -16,7 +16,7 @@
         </div>
         <div class="row">
           <div class="col-12">
-            <label>Nazwisko</label>
+            <label class="red-star">Nazwisko</label>
             <mat-form-field class="input-width">
               <input matInput [formControl]="orderForm.surname" [errorStateMatcher]="matcher" [(ngModel)]="order.receiver.surname">
               <mat-error *ngIf="orderForm.surname.hasError('required')">
@@ -27,7 +27,7 @@
         </div>
         <div class="row">
           <div class="col-12">
-            <label>E-mail</label>
+            <label class="red-star">E-mail</label>
             <mat-form-field class="input-width">
               <input matInput [formControl]="orderForm.email" [errorStateMatcher]="matcher" [(ngModel)]="order.receiver.email">
               <mat-error *ngIf="orderForm.email.hasError('email') && !orderForm.email.hasError('required')">
@@ -41,7 +41,7 @@
         </div>
         <div class="row">
           <div class="col-12">
-            <label>Miasto</label>
+            <label class="red-star">Miasto</label>
             <mat-form-field class="input-width">
               <input matInput [formControl]="orderForm.city" [errorStateMatcher]="matcher" [(ngModel)]="order.receiver.address.city">
               <mat-error *ngIf="orderForm.city.hasError('required')">
@@ -52,7 +52,7 @@
         </div>
         <div class="row">
           <div class="col-12">
-            <label>Kod pocztowy</label>
+            <label class="red-star">Kod pocztowy</label>
             <mat-form-field class="input-width">
               <input matInput [formControl]="orderForm.postalCode" [errorStateMatcher]="matcher" [(ngModel)]="order.receiver.address.postalCode">
               <mat-error *ngIf="orderForm.postalCode.hasError('pattern') && !orderForm.postalCode.hasError('required')">
@@ -66,7 +66,7 @@
         </div>
         <div class="row">
           <div class="col-12">
-            <label>Ulica</label>
+            <label class="red-star">Ulica</label>
             <mat-form-field class="input-width">
               <input matInput [formControl]="orderForm.street" [errorStateMatcher]="matcher" [(ngModel)]="order.receiver.address.street">
               <mat-error *ngIf="orderForm.street.hasError('required')">
@@ -77,7 +77,7 @@
         </div>
         <div class="row">
           <div class="col-12">
-            <label>Numer budynku</label>
+            <label class="red-star">Numer budynku</label>
             <mat-form-field class="input-width">
               <input matInput appOnlyNumber="true" [formControl]="orderForm.flatNumber" [errorStateMatcher]="matcher" [(ngModel)]="order.receiver.address.flatNumber">
               <mat-error *ngIf="orderForm.flatNumber.hasError('required')">
@@ -98,6 +98,9 @@
           <button mat-raised-button type="submit" [disabled]="isButtonDisabled()">Kup</button>
         </div>
       </form>
+      <div class="mt-3">
+        <span class="red-star"></span> Pola oznaczone gwiazdką muszą zostać wypełnione.
+      </div>
     </mat-card-content>
   </mat-card>
 </div>

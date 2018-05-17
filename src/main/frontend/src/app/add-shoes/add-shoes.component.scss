@@ -1,3 +1,5 @@
+@import "../../styles.scss";
+
 form {
   margin: 0 auto;
   width: 745px;
@@ -27,14 +29,14 @@ form {
         vertical-align: top;
       }
       button {
-        background-color: chocolate;
+        background-color: $button-color;
         color: white;
       }
     }
     &.marg-left {
       margin-left: 100%;
       button {
-        background-color: #33a94e;
+        background-color: $button-color;
         color: white;
       }
     }

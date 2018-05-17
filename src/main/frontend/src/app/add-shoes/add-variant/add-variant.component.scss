@@ -1,3 +1,6 @@
+@import "../../../styles.scss";
+
+
 .row {
   label {
     width: 200px;
@@ -12,7 +15,7 @@
     font-weight: bold;
     &.add-variant-btn {
       min-width: 60px;
-      background-color: #33a94e;
+      background-color: $button-color;
       color: white;
     }
     &.remove-variant-btn {

@@ -1,4 +1,5 @@
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MatButtonModule, MatCardModule, MatChipsModule, MatDialogModule, MatIconModule, MatInputModule, MatListModule, MatPaginatorIntl, MatPaginatorModule, MatProgressSpinnerModule, MatSelectModule, MatToolbarModule } from '@angular/material';
 
 import { AddShoesComponent } from './add-shoes/add-shoes.component';
@@ -10,7 +11,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { FiltersComponent } from './filters/filters.component';
 import { Global } from './services/global.servie';
-import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { LoginService } from './services/login.service';
 import { MatPaginatorIntlCro } from './objects/mat-paginator-intl';
@@ -26,6 +26,7 @@ import { ShoesListComponent } from './shoes-list/shoes-list.component';
 import { ShoesService } from './services/shoes.service';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
+import { TokenInterceptor } from './services/token-interceptor';
 import { UploadImageService } from './services/upload-image.service';
 
 @NgModule({
@@ -79,6 +80,11 @@ import { UploadImageService } from './services/upload-image.service';
     {
       provide: MatPaginatorIntl,
       useClass: MatPaginatorIntlCro
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
     }
   ],
   bootstrap: [AppComponent]

@@ -1,4 +1,6 @@
-mat-toolbar {
+@import "../../styles.scss";
+
+.navbar-shoeshop {
   background-color: black;
   width: 101.6%;
   margin-left: -15px;
@@ -29,7 +31,7 @@ mat-toolbar {
     }
   }
   button {
-    background-color: #33a94e;
+    background-color: $button-color;
     color: white;
     &.shopping-cart-button {
       .shopping-cart-icon {
@@ -38,7 +40,7 @@ mat-toolbar {
       }
     }
     &:hover {
-      background-color: darken(#33a94e, $amount: 5);
+      background-color: darken($button-color, $amount: 5);
     }
   }
 }

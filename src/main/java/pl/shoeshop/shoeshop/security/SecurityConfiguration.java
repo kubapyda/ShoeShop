@@ -34,6 +34,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and().csrf().disable()
                 .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
+                .antMatchers(HttpMethod.OPTIONS).permitAll()
                 .antMatchers("/shoes/add", "/shoes/edit", "/shoes/delete/*").hasRole(RoleType.ADMIN.name())
                 .antMatchers("/orders/find/**", "/orders/changeStatus/**").hasRole(RoleType.ADMIN.name())
                 .antMatchers(HttpMethod.POST, "/shoes/*/picture").hasRole(RoleType.ADMIN.name());

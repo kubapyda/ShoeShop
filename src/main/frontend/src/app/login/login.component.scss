@@ -1,8 +1,10 @@
+@import "../../styles.scss";
+
 .full-width {
   width: 100%;
   display: block;
 }
 .login-btn {
-  background-color: #33a94e;
+  background-color: $button-color;
   color: white;
 }

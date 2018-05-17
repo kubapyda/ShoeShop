@@ -1,3 +1,5 @@
+@import "../../styles.scss";
+
 .container {
   mat-list-item {
     h4 {
@@ -45,7 +47,7 @@
     font-size: 22px;
     padding: 6px 16px;
     &.make-order {
-      background-color: #33a94e;
+      background-color: $button-color;
       color: white;
       position: absolute;
       right: 24px;

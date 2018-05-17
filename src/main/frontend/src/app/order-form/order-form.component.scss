@@ -1,3 +1,5 @@
+@import "../../styles.scss";
+
 .container {
   form {
     width: 535px;
@@ -13,7 +15,7 @@
     .marg-left {
       margin-left: 130%;
       button {
-        background-color: #33a94e;
+        background-color: $button-color;
         color: #fff;
       }
     }

@@ -1,14 +1,19 @@
+@import "../../styles.scss";
+
 .filter-form {
-  mat-form-field input {
-    width: 85%;
+  mat-form-field {
+    width: 157px;
+    input {
+      width: 85%;
+    }
   }
   .full-width {
     width: 92%;
   }
   .row {
     button {
-      transform: translateX(300px);
-      background-color: chocolate;
+      transform: translateX(275px);
+      background-color: $button-color;
       color: white;
       font-size: bold;
     }

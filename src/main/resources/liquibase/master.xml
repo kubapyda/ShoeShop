@@ -18,5 +18,7 @@
     <include file="classpath:liquibase/201804211210_edited_entity_receiver.xml" relativeToChangelogFile="false"/>
     <include file="classpath:liquibase/201805052010_edited_entity_account.xml" relativeToChangelogFile="false"/>
     <include file="classpath:liquibase/201805052017_insert_to_account.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:liquibase/201810201247_added_entity_rate.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:liquibase/201810201255_added_entity_vote.xml" relativeToChangelogFile="false"/>
 
 </databaseChangeLog>

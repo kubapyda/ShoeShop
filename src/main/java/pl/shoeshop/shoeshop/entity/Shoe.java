@@ -61,4 +61,7 @@ public class Shoe {
     @Fetch(FetchMode.SUBSELECT)
     @NotEmpty
     private List<ShoeVariant> variants;
+
+    @OneToMany(mappedBy = "shoe")
+    private List<Rate> rates;
 }

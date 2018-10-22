@@ -56,6 +56,10 @@
         </table>
     </div>
     <p>Całkowity koszt zamówienia: ${totalPrice} zł</p>
+    <h3>Nie zapomnij ocenić obuwia</h3>
+    #foreach($linkDTO in $ratingLinks)
+        <a href="http://${linkDTO.ratingLink}">${linkDTO.shoeName}</a>
+    #end
     <br>
     <p>Z poważaniem zespół <strong>ShoeShop</strong></p>
 </body>

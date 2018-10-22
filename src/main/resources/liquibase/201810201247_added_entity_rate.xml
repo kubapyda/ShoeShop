@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="201810201247-1" author="niemiecw">
+        <createTable tableName="rate">
+            <column name="id" autoIncrement="true" type="bigint">
+                <constraints primaryKey="true"
+                             primaryKeyName="rate_pk"/>
+            </column>
+            <column name="rate" type="int"/>
+            <column name="shoe_id" type="bigint"/>
+            <column name="rate_comment" type="varchar(255)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="201810201247-2" author="niemiecw">
+        <addForeignKeyConstraint baseTableName="rate"
+                                 baseColumnNames="shoe_id"
+                                 constraintName="rate_shoe_fk"
+                                 referencedTableName="shoe"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="201810201247-3" author="niemiecw">
+        <addColumn tableName="rate">
+            <column name="order_id" type="bigint"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="201810201247-4" author="niemiecw">
+        <addForeignKeyConstraint baseTableName="rate"
+                                 baseColumnNames="order_id"
+                                 constraintName="rate_order_fk"
+                                 referencedTableName="t_order"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>

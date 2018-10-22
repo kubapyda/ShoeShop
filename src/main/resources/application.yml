@@ -30,3 +30,6 @@ spring:
 jwt:
   secret: bXlzZWNyZXQ=
   validity: 86400000
+
+frontend:
+  url: localhost:4200

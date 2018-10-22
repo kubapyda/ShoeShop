@@ -64,4 +64,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public Properties jwtProperties() {
         return new Properties();
     }
+
+    @Bean
+    public FrontendProperties frontendProperties() {
+        return new FrontendProperties();
+    }
 }

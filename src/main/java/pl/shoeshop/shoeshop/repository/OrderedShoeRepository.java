@@ -6,7 +6,7 @@ import org.springframework.data.repository.query.Param;
 import pl.shoeshop.shoeshop.entity.OrderedShoe;
 import pl.shoeshop.shoeshop.projection.OrderedShoeProjection;
 
-import java.util.stream.Stream;
+import java.util.List;
 
 public interface OrderedShoeRepository extends JpaRepository<OrderedShoe, Long> {
 
@@ -17,6 +17,7 @@ public interface OrderedShoeRepository extends JpaRepository<OrderedShoe, Long> 
             "sv.sole_color as SoleColor, " +
             "ss.size, " +
             "s.price," +
+            "s.id as shoeId," +
             "os.quantity " +
             "FROM t_order o " +
             "JOIN ordered_shoe os ON o.id = os.order_id " +
@@ -24,5 +25,5 @@ public interface OrderedShoeRepository extends JpaRepository<OrderedShoe, Long> 
             "JOIN shoe_variant sv ON ss.shoe_variant_id = sv.id " +
             "JOIN shoe s ON sv.shoe_id = s.id " +
             "WHERE o.id = :orderId")
-    Stream<OrderedShoeProjection> getOrderedShoes(@Param("orderId") Long orderId);
+    List<OrderedShoeProjection> getOrderedShoes(@Param("orderId") Long orderId);
 }

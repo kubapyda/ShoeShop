@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="201810201255-1" author="niemiecw">
+        <createTable tableName="vote">
+            <column name="id" autoIncrement="true" type="bigint">
+                <constraints primaryKey="true"
+                             primaryKeyName="vote_pk"/>
+            </column>
+            <column name="rate_id" type="bigint"/>
+            <column name="receiver_id" type="bigint"/>
+            <column name="is_useful" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="201810201255-2" author="niemiecw">
+        <addForeignKeyConstraint baseTableName="vote"
+                                 baseColumnNames="rate_id"
+                                 constraintName="vote_rate_fk"
+                                 referencedTableName="rate"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="201810201255-3" author="niemiecw">
+        <addForeignKeyConstraint baseTableName="vote"
+                                 baseColumnNames="receiver_id"
+                                 constraintName="vote_receiver_fk"
+                                 referencedTableName="receiver"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>

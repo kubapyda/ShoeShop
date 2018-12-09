@@ -1,5 +1,6 @@
 package pl.shoeshop.shoeshop.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -62,6 +63,7 @@ public class Shoe {
     @NotEmpty
     private List<ShoeVariant> variants;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "shoe")
     private List<Rate> rates;
 }

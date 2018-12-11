@@ -5,6 +5,7 @@ import { AuthGuard } from "./services/auth-guard.service";
 import { LoginComponent } from './login/login.component';
 import { NgModule } from "@angular/core";
 import { OrderFormComponent } from './order-form/order-form.component';
+import { RateOrderComponent } from './rate-order/rate-order.component';
 import { ShoesDetailComponent } from './shoes-detail/shoes-detail.component';
 import { ShoesListComponent } from "./shoes-list/shoes-list.component";
 import { ShoppingCartComponent } from "./shopping-cart/shopping-cart.component";
@@ -26,6 +27,9 @@ const appRoutes: Routes = [
   }, {
     path: 'order-form',
     component: OrderFormComponent
+  }, {
+    path: 'rate-order/:orderId/shoe/:shoeId',
+    component: RateOrderComponent
   }
 ];
 

@@ -9,6 +9,10 @@
           <h2>
             <span class="badge badge-success">{{shoes?.price}}zł</span>
           </h2>
+          <div class="rating">
+            <ngb-rating [rate]="shoeRate.summary.rate" class="rate"></ngb-rating>
+            <span>({{shoeRate.summary.totalRates}})</span>
+          </div>
           <h3 class="mt-4">Wybierz kolor:</h3>
           <span *ngFor="let variant of shoes?.variants" class="color-variants mr-2 mt-2" [ngStyle]="{backgroundColor: variant.shankColor}"
             [routerLink]="['../', variant.id]" (click)="getOtherVariant(variant.id)"></span>
@@ -47,6 +51,22 @@
         </mat-list-item>
         <mat-divider></mat-divider>
       </mat-list>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="mt-3">
+    <mat-card-content>
+      <mat-card class="mt-2" *ngFor="let comment of shoeRate.comments">
+        <mat-card-content>
+          <ngb-rating [rate]="comment.rate"></ngb-rating>
+          <div class="vote">
+              <i class="fa fa-thumbs-up useful" (click)="vote(comment.id, true)"></i>
+              <i class="fa fa-thumbs-down unuseful" (click)="vote(comment.id, false)"></i>
+              <span [ngClass]="comment.usability >= 0 ? 'useful' : 'unuseful'">{{comment.usability}}</span>
+          </div>
+          <div class="mt-2">{{comment.rateComment}}</div>
+        </mat-card-content>
+      </mat-card>
     </mat-card-content>
   </mat-card>
 </div>

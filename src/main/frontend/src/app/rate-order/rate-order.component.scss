@@ -1,0 +1,25 @@
+.container {
+  .row {
+    .col-12 {
+      .rating {
+        display: block !important;
+        margin: 0 auto;
+        width: 435px;
+        font-size: 2.5rem;
+        &:foucs {
+          outline: none;
+        }
+      }
+      .full-width {
+        width: 100%;
+        textarea {
+          resize: none;
+        }
+      }
+      .add-rating {
+        color: white;
+        background-color: #48a4ac;
+      }
+    }
+  }
+}

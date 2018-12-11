@@ -16,10 +16,13 @@ import { LoginService } from './services/login.service';
 import { MatPaginatorIntlCro } from './objects/mat-paginator-intl';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NgModule } from '@angular/core';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { OnlyNumber } from './directives/only-number.directive';
 import { OrderConfirmationComponent } from './order-form/order-confirmation/order-confirmation.component';
 import { OrderFormComponent } from './order-form/order-form.component';
 import { OrderService } from './services/order.service';
+import { RateOrderComponent } from './rate-order/rate-order.component';
+import { RateService } from './services/rate.service';
 import { ShoesComponent } from './shoes-list/shoes/shoes.component';
 import { ShoesDetailComponent } from './shoes-detail/shoes-detail.component';
 import { ShoesListComponent } from './shoes-list/shoes-list.component';
@@ -43,7 +46,8 @@ import { UploadImageService } from './services/upload-image.service';
     OnlyNumber,
     OrderFormComponent,
     OrderConfirmationComponent,
-    LoginComponent
+    LoginComponent,
+    RateOrderComponent
   ],
   entryComponents: [
     AddVariantComponent,
@@ -68,6 +72,7 @@ import { UploadImageService } from './services/upload-image.service';
     MatPaginatorModule,
     AppRoutingModule,
     HttpClientModule,
+    NgbModule.forRoot(),
     ToastModule.forRoot()
   ],
   providers: [
@@ -76,6 +81,7 @@ import { UploadImageService } from './services/upload-image.service';
     OrderService,
     LoginService,
     AuthGuard,
+    RateService,
     UploadImageService,
     {
       provide: MatPaginatorIntl,

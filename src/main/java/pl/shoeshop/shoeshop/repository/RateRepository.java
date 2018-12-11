@@ -44,6 +44,7 @@ public interface RateRepository extends JpaRepository<Rate, Long> {
     @Query(nativeQuery = true, value = 
             "select r.rate, " +
             "       r.rate_comment as rateComment, " +
+            "       r.id as rateId, " +
             "       coalesce(useful_votes.number, 0) - coalesce(unuseful_votes.number, 0) as usability " +
             "from rate r " +
             "       left join (select rate_id, count(is_useful) number " +

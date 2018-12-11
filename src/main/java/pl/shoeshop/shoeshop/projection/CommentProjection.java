@@ -2,7 +2,8 @@ package pl.shoeshop.shoeshop.projection;
 
 public interface CommentProjection {
 
-    String getRateComment();
+    Long getRateId();
     Integer getRate();
+    String getRateComment();
     Integer getUsability();
 }

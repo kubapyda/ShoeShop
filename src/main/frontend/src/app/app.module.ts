@@ -1,6 +1,19 @@
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { MatButtonModule, MatCardModule, MatChipsModule, MatDialogModule, MatIconModule, MatInputModule, MatListModule, MatPaginatorIntl, MatPaginatorModule, MatProgressSpinnerModule, MatSelectModule, MatToolbarModule } from '@angular/material';
+import {
+  MatButtonModule,
+  MatCardModule,
+  MatChipsModule,
+  MatDialogModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatPaginatorIntl,
+  MatPaginatorModule,
+  MatProgressSpinnerModule,
+  MatSelectModule,
+  MatToolbarModule
+} from '@angular/material';
 
 import { AddShoesComponent } from './add-shoes/add-shoes.component';
 import { AddVariantComponent } from './add-shoes/add-variant/add-variant.component';
@@ -10,6 +23,7 @@ import { AuthGuard } from './services/auth-guard.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { FiltersComponent } from './filters/filters.component';
+import { GetEmailComponent } from './shoes-detail/get-email/get-email.component';
 import { Global } from './services/global.servie';
 import { LoginComponent } from './login/login.component';
 import { LoginService } from './services/login.service';
@@ -47,12 +61,14 @@ import { UploadImageService } from './services/upload-image.service';
     OrderFormComponent,
     OrderConfirmationComponent,
     LoginComponent,
-    RateOrderComponent
+    RateOrderComponent,
+    GetEmailComponent
   ],
   entryComponents: [
     AddVariantComponent,
     OrderConfirmationComponent,
-    LoginComponent
+    LoginComponent,
+    GetEmailComponent
   ],
   imports: [
     BrowserModule,

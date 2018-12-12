@@ -3,6 +3,8 @@ import * as _ from 'lodash';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, ViewContainerRef } from '@angular/core';
 
+import { Global } from './../services/global.servie';
+import { MatDialog } from '@angular/material';
 import { Rate } from '../objects/rate';
 import { RateService } from './../services/rate.service';
 import { ToastsManager } from 'ng2-toastr';
@@ -22,29 +24,30 @@ export class RateOrderComponent {
     private rateService: RateService,
     private toastr: ToastsManager,
     private router: Router,
-    private vcr: ViewContainerRef
+    private global: Global,
+    private vcr: ViewContainerRef,
+    private  dialog: MatDialog
   ) {
     this.toastr.setRootViewContainerRef(vcr);
-    console.log(this.route);
   }
 
   addRating() {
+    this.global.loaderTrue();
     const rate: Rate = {
       rate: this.rateValue,
       comment: this.comment,
-      // identityEmail: _.get(this.route.queryParams, 'value.email'),
-      identityEmail: 'kubapyda95@gmail.com',
+      identityEmail: decodeURIComponent(_.get(this.route.queryParams, 'value.email')),
       orderId: +_.get(this.route.params, 'value.orderId'),
       shoeId: +_.get(this.route.params, 'value.shoeId')
     };
-    this.rateService.rate(rate).subscribe((data) => {
-      console.log(data);
+    this.rateService.rate(rate).subscribe(() => {
+      this.global.loaderFalse();
       this.toastr.success('Pomyślnie oceniono obuwie. Zostaniesz przekierowany na stronę główną', 'Dziękujemy!');
       setTimeout(() => {
         this.router.navigate(['']);
       }, 4000);
-    }, (err) => {
-      console.log(err);
+    }, () => {
+      this.global.loaderFalse();
       this.toastr.error('Podczas dodawania oceny wystąpił błąd, prosimy spróbować ponownie później', 'Błąd!');
     });
 

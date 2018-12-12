@@ -68,7 +68,7 @@ export class AddShoesComponent implements OnInit {
   }
 
   openDialog() {
-    let dialogRef = this.dialog.open(AddVariantComponent, {
+    const dialogRef = this.dialog.open(AddVariantComponent, {
       width: '600px'
     });
 
@@ -88,8 +88,7 @@ export class AddShoesComponent implements OnInit {
       this.shoes = new Shoes();
       this.toastr.success('Pomyślnie dodano obuwie', 'Powodzenie!');
       this.global.loaderFalse();
-    }
-    catch (e) {
+    } catch (e) {
       this.toastr.error('Podczas dodawania obuwia wystąpił błąd', 'Niepowodzenie');
       this.global.loaderFalse();
     }

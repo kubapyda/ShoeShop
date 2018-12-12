@@ -22,7 +22,6 @@ export class RateService {
   }
 
   vote(vote: Vote) {
-    console.log(vote);
     return this.http.post(`${this.url}/vote`, vote);
   }
 

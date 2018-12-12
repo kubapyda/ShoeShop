@@ -14,7 +14,7 @@
     </div>
     <div class="row">
       <div class="col-12 text-center">
-        <button mat-raised-button class="add-rating" (click)="addRating()">Dodaj ocenę</button>
+        <button mat-raised-button class="add-rating" (click)="addRating()" [disabled]="!rating && !comment">Dodaj ocenę</button>
       </div>
     </div>
 </div>

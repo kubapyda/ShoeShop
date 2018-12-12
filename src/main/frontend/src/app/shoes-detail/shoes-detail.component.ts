@@ -1,13 +1,18 @@
-import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import * as _ from 'lodash';
 
+import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
+
+import { GetEmailComponent } from './get-email/get-email.component';
 import { Global } from './../services/global.servie';
+import { MatDialog } from '@angular/material';
 import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 import { OrderService } from '../services/order.service';
 import { RateService } from './../services/rate.service';
 import { ShoeRate } from './../objects/shoe-rate';
 import { Shoes } from '../add-shoes/shoes';
 import { ShoesService } from '../services/shoes.service';
+import { ToastsManager } from 'ng2-toastr';
 import { Variant } from './../add-shoes/add-variant/variant';
 
 @Component({
@@ -33,9 +38,13 @@ export class ShoesDetailComponent implements OnInit {
     private order: OrderService,
     private route: Router,
     private rateService: RateService,
-    config: NgbRatingConfig
+    private dialog: MatDialog,
+    private toastr: ToastsManager,
+    config: NgbRatingConfig,
+    private vcr: ViewContainerRef
   ) {
     config.readonly = true;
+    this.toastr.setRootViewContainerRef(vcr);
   }
 
   ngOnInit() {
@@ -58,11 +67,33 @@ export class ShoesDetailComponent implements OnInit {
   private getShoeRate() {
     this.rateService.shoeRate(this.id).subscribe((data: ShoeRate) => {
       this.shoeRate = data;
+      this.global.loaderFalse();
     });
   }
 
-  vote(id: number, isUseful: boolean) {
-    this.rateService.vote({ rateId: id, isUseful: isUseful }).subscribe(() => {});
+  vote(id: any, isUseful: boolean) {
+    const dialogRef = this.dialog.open(GetEmailComponent, {
+      width: '500px'
+    });
+
+    dialogRef.afterClosed().subscribe((email: string) => {
+      if (email) {
+        this.global.loaderTrue();
+        this.rateService.vote({ rateId: id, isUseful: isUseful, identityEmail: email }).subscribe(() => {
+          this.getShoeRate();
+          this.toastr.success('Oznaczono użyteczność komentarza', 'Powodzenie!');
+        }, (err) => {
+          if (_.head(err.error.errors).code === 'error.alreadyVotedOrNotACustomer') {
+            this.toastr.error('Użytkownik o podanym emailu oznaczył już użyteczność tego komentarza', 'Błąd!');
+          }
+          this.global.loaderFalse();
+        });
+      }
+    });
+  }
+
+  trackByFn(index, item) {
+    return index;
   }
 
   selectSize(size: number, index: number) {
